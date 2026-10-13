@@ -22,7 +22,7 @@
         "Duree_travaux_DT": "projetEtSonCalendrier.dureeDuChantierEnJours",
         "Investigations_complementaires": "investigationsComplementaires.motifDeRealisationOuNonDInvestigation",
         "Nom_Signataire_DT": "signatureDuResponsableDuProjetOuDeSonRepresentant.nomDuSignataire",
-        "Nombre_PJ_DT": "signatureDuResponsableDuProjetOuDeSonRepresentant.nombrePagesJointes",
+        "Nombre_PJ_DT": "signatureDuResponsableDuProjetOuDeSonRepresentant.nombrePagesJointes"
     },
     "DICT": {
         "No_GU_DICT": "noConsultationDuTeleservice",
@@ -46,6 +46,6 @@
         "Profondeur_DICT": "travauxEtLeurCalendrier.profondeurMaxDExcavation",
         "DureeChantier_DICT": "travauxEtLeurCalendrier.dureeDuChantierEnJours",
         "NomSignataire_DICT": "signatureDeLExecutantDesTravauxOuDeSonRepresentant.nomDuSignataire",
-        "NombrePJ_DICT": "signatureDeLExecutantDesTravauxOuDeSonRepresentant.nombrePagesJointes",
+        "NombrePJ_DICT": "signatureDeLExecutantDesTravauxOuDeSonRepresentant.nombrePagesJointes"
     }
 }
