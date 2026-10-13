@@ -1,0 +1,10 @@
+.vscode/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+*.todo
+dev_tools/
