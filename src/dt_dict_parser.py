@@ -236,8 +236,6 @@ class FlattenedPDFParser(ParserFactory):
                 values["declaration_type"] = DeclarationType.DT
             values["emprise.geometrie"] = results["global"].get("geom")
 
-            print(values)
-
             declarations.append(self._build(cls, values))
 
         return declarations
@@ -769,12 +767,12 @@ TODO
 
 if __name__ == "__main__":
     # input_file_path = Path("/home/bn/Documents/maquette/Travaux-Prevelles-09-2026.pdf")
-    input_file_path = Path(
-        "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_1.pdf"
-    )
     # input_file_path = Path(
-    #     "/home/bn/Documents/Perso/CadastralDataAnalyzer/src/DT_DICT/dev_tools/2026100800884T_DDC/2026100800884T_DDC_description/2026100800884T_DDC_description.xml"
+    #     "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_1.pdf"
     # )
+    input_file_path = Path(
+        "/home/bn/Documents/Perso/CadastralDataAnalyzer/src/DT_DICT/dev_tools/2026100800884T_DDC/2026100800884T_DDC_description/2026100800884T_DDC_description.xml"
+    )
 
     document_inspector = DocumentInspector(input_file_path)
     print(document_inspector.document_info)
@@ -794,5 +792,7 @@ if __name__ == "__main__":
     elif document_inspector.document_info["file_type"] == "xml":
         xml_parser = XMLParser(input_file_path)
         content = xml_parser.read_content()
+
+    print(content)
 
     breakpoint()
