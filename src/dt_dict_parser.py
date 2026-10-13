@@ -10,6 +10,12 @@ from typing import Any, Union, get_args, get_origin, get_type_hints
 from xml.etree import ElementTree as ET
 
 import pdfplumber
+from pdfplumber.page import Page as pdfplumber_page
+from pypdf import PdfReader
+from pyproj import Transformer
+from shapely.geometry import Polygon
+from shapely.ops import transform as shapely_transform
+
 from models.models import (
     DICT,
     DT,
@@ -17,11 +23,6 @@ from models.models import (
     EmplacementDeLaCommuneConcernee,
     ModeReceptionCourrier,
 )
-from pdfplumber.page import Page as pdfplumber_page
-from pypdf import PdfReader
-from pyproj import Transformer
-from shapely.geometry import Polygon
-from shapely.ops import transform as shapely_transform
 
 # ██████╗  ██████╗  ██████╗██╗   ██╗███╗   ███╗███████╗███╗   ██╗████████╗    ██╗███╗   ██╗███████╗ ██████╗██████╗ ███████╗ ██████╗████████╗ ██████╗ ██████╗
 # ██╔══██╗██╔═══██╗██╔════╝██║   ██║████╗ ████║██╔════╝████╗  ██║╚══██╔══╝    ██║████╗  ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗
@@ -175,10 +176,10 @@ class FlattenedPDFParser(ParserFactory):
         super().__init__(file_path)
         self.reader = PdfReader(file_path)
 
-        with open("template_14434_03.json", encoding="utf-8") as f:
+        with open("models/template_14434_03.json", encoding="utf-8") as f:
             self.template_cerfa = json.load(f)
 
-        with open("template_cerfa_detection.json", encoding="utf-8") as f:
+        with open("models/template_cerfa_detection.json", encoding="utf-8") as f:
             self.template_cerfa_detection = json.load(f)
 
     def read_content(self):
@@ -418,7 +419,7 @@ class PDFacroFormParser(FlattenedPDFParser):
 
     def __init__(self, pdf_path: Path):
         ParserFactory.__init__(self, pdf_path)
-        with open("acroform_template.json", encoding="utf-8") as f:
+        with open("./models/acroform_template.json", encoding="utf-8") as f:
             self.text_fields = json.load(f)
         self.reader = PdfReader(pdf_path)
 
