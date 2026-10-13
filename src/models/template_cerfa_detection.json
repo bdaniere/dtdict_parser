@@ -1,0 +1,25 @@
+{
+    "template_name": "template_cerfa_detection",
+    "fields": {
+        "GLOBAL.titre": {
+            "type": "text",
+            "section": "GLOBAL",
+            "bbox": [
+                129.59495433070867,
+                10.229033196850395,
+                478.19811968503944,
+                41.68195256692914
+            ]
+        },
+        "GLOBAL.cerfa_numero": {
+            "type": "text",
+            "section": "GLOBAL",
+            "bbox": [
+                534.7004314960631,
+                46.1491851968504,
+                570.2853458267716,
+                52.82135688188977
+            ]
+        }
+    }
+}

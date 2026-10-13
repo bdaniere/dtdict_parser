@@ -1,0 +1,855 @@
+{
+    "template_name": "template_DT_DICT_0.4",
+    "fields": {
+        "DT.noConsultationDuTeleservice": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                142.2429165354331,
+                236.03165858267718,
+                279.79051181102363,
+                247.03546507086614
+            ]
+        },
+        "DICT.noConsultationDuTeleservice": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                424.27595905511816,
+                236.0255584251969,
+                561.8235543307087,
+                247.02936491338585
+            ]
+        },
+        "DT.noAffaireDuResponsableDuProjet": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                159.52215118110223,
+                249.18224881889765,
+                282.4598976377953,
+                259.4918993385827
+            ]
+        },
+        "DICT.noAffaireDeLexecutantDesTravaux": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                447.83280000000013,
+                249.3228869291339,
+                570.770546456693,
+                259.63253744881894
+            ]
+        },
+        "DICT.natureDeLaDeclaration": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                478.81337952755916,
+                270.20478330708664,
+                543.3571445669293,
+                280.7157217322835
+            ]
+        },
+        "DT.dateDeLaDeclaration": {
+            "type": "date",
+            "section": "DT",
+            "bbox": [
+                113.35784881889765,
+                259.27719307086613,
+                202.90132062992132,
+                270.6936423307087
+            ]
+        },
+        "DICT.dateDeLaDeclaration": {
+            "type": "date",
+            "section": "DICT",
+            "bbox": [
+                395.3906645669291,
+                258.673268976378,
+                484.9341363779529,
+                270.0897182362205
+            ]
+        },
+        "DT.typeEntite_PERSONNE_MORALE": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                26.292670866141634,
+                274.71583842519686,
+                36.647138551181,
+                283.9975690393701
+            ]
+        },
+        "DT.typeEntite_PERSONNE_PHYSIQUE": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                113.87074960629923,
+                274.69838551181107,
+                124.22521729133871,
+                283.9801161259843
+            ]
+        },
+        "DT.declarationConjointeDTDICT": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                202.45368188976386,
+                275.0719407874016,
+                212.80814957480322,
+                284.35367140157484
+            ]
+        },
+        "DT.responsableDuProjet.denomination": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                85.21486299212597,
+                308.1222992125985,
+                287.5173902362204,
+                319.4045560629922
+            ]
+        },
+        "DICT.executantDesTravaux.denomination": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                367.26176692913384,
+                307.1221511811024,
+                569.5642941732285,
+                318.40440803149613
+            ]
+        },
+        "DICT.executantDesTravaux.complementService": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                396.50547401574806,
+                320.4468850393701,
+                566.4076015748033,
+                331.78996998425197
+            ]
+        },
+        "DICT.executantDesTravaux.voie": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                377.78232755905503,
+                334.2198330708662,
+                572.9453206299213,
+                345.51502129133866
+            ]
+        },
+        "DICT.executantDesTravaux.lieuDitBP": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                364.5347244094488,
+                345.58948346456697,
+                569.3358415748032,
+                356.0691727559056
+            ]
+        },
+        "DICT.executantDesTravaux.numero": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                328.2945448818897,
+                332.72353700787403,
+                351.1771497637794,
+                344.49810859842523
+            ]
+        },
+        "DICT.executantDesTravaux.codePostal": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                359.322462992126,
+                356.18989606299215,
+                404.1372755905511,
+                366.23562519685044
+            ]
+        },
+        "DICT.executantDesTravaux.pays": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                334.52569133858265,
+                369.446683464567,
+                395.6255489763779,
+                379.43763505511816
+            ]
+        },
+        "DICT.executantDesTravaux.noSiret": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                438.05956535433074,
+                368.10955275590555,
+                568.4298973228347,
+                377.92675077165364
+            ]
+        },
+        "DICT.executantDesTravaux.nomDeLaPersonneAContacter": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                392.70038740157474,
+                381.2662771653544,
+                567.8703722834646,
+                390.9969666141733
+            ]
+        },
+        "DICT.executantDesTravaux.tel": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                330.79200944881893,
+                392.40036850393705,
+                414.0020381102363,
+                402.3279858897638
+            ]
+        },
+        "DICT.executantDesTravaux.courriel": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                352.97469921259835,
+                404.5836755905512,
+                566.8674576377953,
+                414.24872144881897
+            ]
+        },
+        "DICT.executantDesTravaux.commune": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                450.1405417322835,
+                357.04040314960633,
+                565.9531908661418,
+                366.8890388031496
+            ]
+        },
+        "DT.responsableDuProjet.pays": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                51.599026771653485,
+                319.7981196850394,
+                111.84486519685038,
+                331.21456894488193
+            ]
+        },
+        "DT.responsableDuProjet.noSiret": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                154.75969133858268,
+                319.1104062992126,
+                283.66092850393716,
+                329.4500745826772
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.denomination": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                84.47289448818901,
+                344.9693480314961,
+                283.91694236220474,
+                355.9731505511811
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.complementService": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                114.18321259842526,
+                357.3486141732284,
+                281.71617448818904,
+                369.45280261417327
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.numero": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                44.30899842519682,
+                369.4528346456694,
+                69.89281256692914,
+                381.55700409448826
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.voie": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                93.82614803149613,
+                369.72790866141736,
+                281.716148976378,
+                382.65738151181114
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.lieuDitBP": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                81.72198425196848,
+                381.83207244094496,
+                280.3406966929134,
+                392.2856886614174
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.codePostal": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                75.66981732283455,
+                393.11101417322834,
+                120.23523496063001,
+                402.4642507086614
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.commune": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                166.17614173228344,
+                392.8358834645669,
+                280.34063433070867,
+                404.94007190551184
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.personneAcontacter": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                110.88204094488196,
+                404.9401039370079,
+                281.44105511811017,
+                416.4941012598426
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.tel": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                46.78486299212602,
+                415.66881259842523,
+                148.5700781102363,
+                426.12242881889773
+            ]
+        },
+        "DT.representantDuResponsableDeProjet.courriel": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                69.61773543307083,
+                426.94769763779533,
+                281.7161319685039,
+                437.12621829921267
+            ]
+        },
+        "global.exploitant": {
+            "type": "text",
+            "section": "global",
+            "bbox": [
+                282.8488818897638,
+                74.69632062992127,
+                524.0557474015748,
+                90.25805423622049
+            ]
+        },
+        "DT.emplacementDuProjet.adresse": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                70.04219527559053,
+                457.90398425196855,
+                282.8489074015748,
+                467.6300671181103
+            ]
+        },
+        "DICT.emplacement_projet.libelle_voie": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                354.4516913385827,
+                458.03559685039374,
+                575.2022740157481,
+                468.2779871811024
+            ]
+        },
+        "DT.emplacementDuProjet.CP": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                44.32311496062994,
+                467.658651968504,
+                84.08998204724412,
+                477.44153319685046
+            ]
+        },
+        "DICT.emplacementDesTravaux.CP": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                327.77169448818904,
+                468.33701102362204,
+                367.5707518110237,
+                477.18925029921263
+            ]
+        },
+        "DT.emplacementDuProjet.communePrincipale": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                170.8044094488189,
+                469.57529763779536,
+                279.7365458267716,
+                479.301380503937
+            ]
+        },
+        "DICT.emplacementDesTravaux.communePrincipale": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                452.2008755905513,
+                468.88851968503945,
+                571.2155092913388,
+                478.581977480315
+            ]
+        },
+        "DT.emplacementDuProjet.nombreDeCommunes": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                95.75736377952751,
+                477.40263307086616,
+                117.06992674015748,
+                488.2029275905512
+            ]
+        },
+        "DICT.emplacementDesTravaux.nombreDeCommunes": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                379.7368724409449,
+                477.74177007874016,
+                401.0494354015748,
+                488.5420645984252
+            ]
+        },
+        "DT.souhaitsPourLeRecepisse.souhaiteRecevoirLeRecepisse": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                27.733691338582616,
+                510.52212283464576,
+                38.23786119685042,
+                519.7619012598426
+            ]
+        },
+        "DT.souhaitsPourLeRecepisse.mode": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                178.83056692913385,
+                521.0302960629922,
+                277.58974110236227,
+                530.9337225826772
+            ]
+        },
+        "DICT.souhait_reception_recepisse.mode": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                463.78261417322847,
+                514.6723275590552,
+                562.5417883464568,
+                524.5757540787403
+            ]
+        },
+        "DT.souhaitsPourLeRecepisse.modeReceptionElectronique.tailleDesPlans": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                174.1539401574804,
+                544.9635212598427,
+                204.13928125984262,
+                554.5918700787403
+            ]
+        },
+        "DICT.souhaitsPourLeRecepisse.modeReceptionElectronique.tailleDesPlans": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                455.3154425196851,
+                542.718283464567,
+                485.2655829921259,
+                553.284039968504
+            ]
+        },
+        "DT.souhaitsPourLeRecepisse.modeReceptionElectronique.couleurDesPlans": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                253.1061921259843,
+                544.4133448818898,
+                264.38509417322837,
+                553.4914858582678
+            ]
+        },
+        "DICT.souhaitsPourLeRecepisse.modeReceptionElectronique.couleurDesPlans": {
+            "type": "checkbox",
+            "section": "DICT",
+            "bbox": [
+                536.9712094488189,
+                544.4232944881891,
+                548.250111496063,
+                553.501435464567
+            ]
+        },
+        "DT.souhaitsPourLeRecepisse.modeReceptionElectronique.souhaitDePlansVectoriels": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                129.5885480314961,
+                558.168094488189,
+                140.59235451968516,
+                567.5213310236221
+            ]
+        },
+        "DICT.souhaitsPourLeRecepisse.modeReceptionElectronique.souhaitDePlansVectoriels": {
+            "type": "checkbox",
+            "section": "DICT",
+            "bbox": [
+                414.61109291338585,
+                558.4734708661418,
+                425.6148994015748,
+                567.8267074015748
+            ]
+        },
+        "DT.souhaitsPourLeRecepisse.modeReceptionElectronique.formatDesPlansVectoriels": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                193.13554960629915,
+                559.268503937008,
+                262.1844368503936,
+                569.1719304566931
+            ]
+        },
+        "DICT.souhaitsPourLeRecepisse.modeReceptionElectronique.formatDesPlansVectoriels": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                475.9662897637795,
+                558.7253858267717,
+                545.0151770078742,
+                568.6288123464567
+            ]
+        },
+        "DT.projetEtSonCalendrier.natureDesTravaux": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                139.68102047244088,
+                585.8992913385828,
+                281.292788976378,
+                599.5158083149607
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.natureDesTravaux": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                421.84695118110244,
+                586.2992031496063,
+                563.5042015748031,
+                598.3106255433071
+            ]
+        },
+        "DT.projetEtSonCalendrier.decrivezLeProjet": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                27.52820787401572,
+                597.7818141732284,
+                283.64181448818897,
+                629.4177581102363
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.decrivezLesTravaux": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                311.3176535433071,
+                599.3224157480315,
+                564.0856639370079,
+                619.4428551496063
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.techniquesUtilisees": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                423.5680913385827,
+                619.3364598425197,
+                563.2198809448819,
+                644.9989056377954
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.autreTechnique": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                432.8867338582677,
+                646.2701858267717,
+                562.6120847244094,
+                656.9486277165355
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.profondeurMaxDExcavation": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                518.6134771653542,
+                659.1376913385827,
+                552.784011023622,
+                669.965973448819
+            ]
+        },
+        "DT.projetEtSonCalendrier.emploiDeTechniquesSansTranchees_true": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                176.62977637795268,
+                629.1426330708662,
+                187.15215798425186,
+                638.2207955905512
+            ]
+        },
+        "DT.projetEtSonCalendrier.emploiDeTechniquesSansTranchees_false": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                210.76333228346448,
+                629.5407307086615,
+                221.28571388976366,
+                638.6188932283465
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.modificationProfilTerrain": {
+            "type": "checkbox",
+            "section": "DICT",
+            "bbox": [
+                310.7952283464567,
+                673.490125984252,
+                321.3176099527559,
+                682.5682885039371
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.communicationResultatsInvestigations_true": {
+            "type": "checkbox",
+            "section": "DICT",
+            "bbox": [
+                489.2298236220472,
+                696.1305543307087,
+                499.7522052283464,
+                705.2087168503938
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.communicationResultatsInvestigations_false": {
+            "type": "checkbox",
+            "section": "DICT",
+            "bbox": [
+                533.4620598425197,
+                696.3469228346457,
+                543.9844414488189,
+                705.4250853543308
+            ]
+        },
+        "DT.projetEtSonCalendrier.distanceMinimaleEntreLesTravauxEtLaLigneElectrique": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                236.1301511811024,
+                640.5262866141733,
+                273.5453395275591,
+                648.1796760000001
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.distanceMinimaleEntreLesTravauxEtLaLigneElectrique": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                519.7479307086614,
+                709.7372503937008,
+                557.1631190551182,
+                717.3906397795276
+            ]
+        },
+        "DT.projetEtSonCalendrier.souhaitLesPlansDesReseauxElectriqueAeriens": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                28.766125984251858,
+                646.0610173228347,
+                39.2197422047243,
+                655.9644438425197
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.souhaitLesPlansDesReseauxElectriqueAeriens": {
+            "type": "checkbox",
+            "section": "DICT",
+            "bbox": [
+                310.4188440944881,
+                722.6541921259843,
+                320.87246031496045,
+                732.5576186456694
+            ]
+        },
+        "DT.projetEtSonCalendrier.datePrevuePourLeCommencementDesTravaux": {
+            "type": "date",
+            "section": "DT",
+            "bbox": [
+                108.13104566929121,
+                658.5778488188977,
+                183.78221952755905,
+                669.8567508661419
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.datePrevuePourLeCommencementDesTravaux": {
+            "type": "date",
+            "section": "DICT",
+            "bbox": [
+                494.5549039370078,
+                738.8212251968504,
+                570.2060777952756,
+                750.1001272440946
+            ]
+        },
+        "DT.projetEtSonCalendrier.dureeDuChantierEnJours": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                229.44804094488188,
+                656.3770582677166,
+                257.7828463937009,
+                668.2061505826772
+            ]
+        },
+        "DICT.travauxEtLeurCalendrier.dureeDuChantierEnJours": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                381.7510015748031,
+                748.8000850393702,
+                410.085807023622,
+                760.6291773543307
+            ]
+        },
+        "DT.investigationsComplementaires.realisationDInvestigationsComplementaires_true": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                202.80316535433076,
+                696.38751496063,
+                212.52924822047248,
+                704.1683817637796
+            ]
+        },
+        "DT.investigationsComplementaires.realisationDInvestigationsComplementaires_false": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                249.26825196850393,
+                696.6085606299213,
+                258.99433483464566,
+                704.3894274330709
+            ]
+        },
+        "DT.investigationsComplementaires.motifDeRealisationOuNonDInvestigation": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                238.25111811023623,
+                715.2474614173229,
+                286.66787244094485,
+                727.9018392755905
+            ]
+        },
+        "DT.investigationsComplementaires.dateDesInvestigationsComplementaires": {
+            "type": "date",
+            "section": "DT",
+            "bbox": [
+                212.66725039370078,
+                727.9018582677166,
+                285.8425710236221,
+                739.4558555905512
+            ]
+        },
+        "DT.investigationsComplementaires.InvestigationsSusceptibleDeNecessiterUneDICT": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                28.215921259842503,
+                739.0432062992128,
+                38.531989984251936,
+                748.3964428346459
+            ]
+        },
+        "DT.investigationsComplementaires.envoiDesResultatsAuxExploitantsDOuvragesEtAuxEntreprises": {
+            "type": "checkbox",
+            "section": "DT",
+            "bbox": [
+                28.44799370078738,
+                750.3720944881891,
+                38.76406242519681,
+                759.7253310236223
+            ]
+        },
+        "DT.signatureDuResponsableDuProjetOuDeSonRepresentant.nomDuSignataire": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                100.77661417322838,
+                782.7552000000001,
+                205.42927181102357,
+                794.4265003464568
+            ]
+        },
+        "DICT.signatureDeLExecutantDesTravauxOuDeSonRepresentant.nomDuSignataire": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                383.31660472440944,
+                782.9016661417324,
+                487.96926236220474,
+                794.5729664881891
+            ]
+        },
+        "DT.signatureDuResponsableDuProjetOuDeSonRepresentant.nombrePagesJointes": {
+            "type": "text",
+            "section": "DT",
+            "bbox": [
+                266.89810393700793,
+                803.3744692913388,
+                288.6845116535434,
+                816.6019447559056
+            ]
+        },
+        "DICT.signatureDeLExecutantDesTravauxOuDeSonRepresentant.nombrePagesJointes": {
+            "type": "text",
+            "section": "DICT",
+            "bbox": [
+                547.9961952755907,
+                803.2317165354332,
+                569.7826029921262,
+                816.459192
+            ]
+        }
+    }
+}
