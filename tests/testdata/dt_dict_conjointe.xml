@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<t:dossierConsultation xmlns:t="http://www.reseaux-et-canalisations.gouv.fr/schema-teleservice/3.2" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ie="http://xml.insee.fr/schema" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gss="http://www.isotc211.org/2005/gss">
+    <t:dtDictConjointes>
+        <t:nomDuSignataire>bn</t:nomDuSignataire>
+        <t:nombrePagesJointes>1</t:nombrePagesJointes>
+        <t:noConsultationDuTeleservice>2026100801380T</t:noConsultationDuTeleservice>
+        <t:dateDeLaDeclaration>2026-10-08T16:16:46.318+02:00</t:dateDeLaDeclaration>
+        <t:partieDT>
+            <t:noAffaireDuResponsableDuProjet>num_affaore</t:noAffaireDuResponsableDuProjet>
+            <t:typeEntite>PERSONNE_MORALE</t:typeEntite>
+            <t:declarationConjointeDTDICT>true</t:declarationConjointeDTDICT>
+            <t:responsableDuProjet>
+                <t:denomination>DANIERE Benjamin</t:denomination>
+                <t:pays>FRANCE</t:pays>
+            </t:responsableDuProjet>
+            <t:representantDuResponsableDeProjet>
+                <t:denomination>DANIERE Benjamin</t:denomination>
+                <t:numero>21</t:numero>
+                <t:voie>rue des ecoles</t:voie>
+                <t:codePostal>38080</t:codePostal>
+                <t:commune>Saint-Alban de roche</t:commune>
+                <t:tel>0689230191</t:tel>
+                <t:courriel>benjamin@bimdata.io</t:courriel>
+            </t:representantDuResponsableDeProjet>
+            <t:emplacementDuProjet>
+                <t:CP>38080</t:CP>
+                <t:communePrincipale>Saint-Alban-de-Roche</t:communePrincipale>
+                <t:codeINSEE>38352</t:codeINSEE>
+                <t:nombreDeCommunes>1</t:nombreDeCommunes>
+                <t:listeDesEmplacementsDesCommunesConcernees>
+                    <t:emplacementDeLaCommuneConcernee>
+                        <t:nomDeLaCommune>Saint-Alban-de-Roche</t:nomDeLaCommune>
+                        <t:codePostal>38080</t:codePostal>
+                        <t:codeINSEE>38352</t:codeINSEE>
+                    </t:emplacementDeLaCommuneConcernee>
+                </t:listeDesEmplacementsDesCommunesConcernees>
+            </t:emplacementDuProjet>
+            <t:emprise>
+                <t:geometrie srsName="urn:ogc:def:crs:EPSG::4171" srsDimension="2" gml:id="dtemprise0">
+                    <gml:surfaceMembers>
+                        <gml:Polygon gml:id="dt0">
+                            <gml:exterior>
+<gml:LinearRing>
+    <gml:coordinates>5.2246786504304215,45.59580447386982 5.224574044328498,45.59571251143962 5.224649146145262,45.59568060607154 5.224885180426526,45.59581198100034 5.2246786504304215,45.59580447386982</gml:coordinates>
+</gml:LinearRing>
+                            </gml:exterior>
+                        </gml:Polygon>
+                    </gml:surfaceMembers>
+                </t:geometrie>
+                <t:surface>154.13016258107325</t:surface>
+                <t:referenceDelaCarte>Photographies aériennes: Géoportail Numérique 2009; Carte: 2012; Réseaux routiers: 2011</t:referenceDelaCarte>
+            </t:emprise>
+            <t:souhaitsPourLeRecepisse>
+                <t:souhaiteRecevoirLeRecepisse>true</t:souhaiteRecevoirLeRecepisse>
+                <t:modeReceptionCourrier/>
+            </t:souhaitsPourLeRecepisse>
+            <t:projetEtSonCalendrier>
+                <t:natureDesTravaux>SOU</t:natureDesTravaux>
+                <t:natureDesTravaux>RBL</t:natureDesTravaux>
+                <t:decrivezLeProjet>descriptionIMPACT-PCRS:03A</t:decrivezLeProjet>
+                <t:emploiDeTechniquesSansTranchees>false</t:emploiDeTechniquesSansTranchees>
+                <t:distanceMinimaleEntreLesTravauxEtLaLigneElectrique>100.00</t:distanceMinimaleEntreLesTravauxEtLaLigneElectrique>
+                <t:souhaitLesPlansDesReseauxElectriqueAeriens>true</t:souhaitLesPlansDesReseauxElectriqueAeriens>
+                <t:datePrevuePourLeCommencementDesTravaux>2026-10-23+02:00</t:datePrevuePourLeCommencementDesTravaux>
+                <t:dureeDuChantierEnJours>5</t:dureeDuChantierEnJours>
+            </t:projetEtSonCalendrier>
+            <t:investigationsComplementaires>
+                <t:realisationDInvestigationsComplementaires>true</t:realisationDInvestigationsComplementaires>
+                <t:motifDeRealisationOuNonDInvestigation>CARTOA</t:motifDeRealisationOuNonDInvestigation>
+                <t:dateDesInvestigationsComplementaires>2026-10-16T00:00:00.000+02:00</t:dateDesInvestigationsComplementaires>
+                <t:InvestigationsSusceptibleDeNecessiterUneDICT>false</t:InvestigationsSusceptibleDeNecessiterUneDICT>
+                <t:envoiDesResultatsAuxExploitantsDOuvragesEtAuxEntreprises>false</t:envoiDesResultatsAuxExploitantsDOuvragesEtAuxEntreprises>
+            </t:investigationsComplementaires>
+            <t:noConsultationDuTeleservice>2026100801380T</t:noConsultationDuTeleservice>
+            <t:dateDeLaDeclaration>2026-10-08T16:16:46.318+02:00</t:dateDeLaDeclaration>
+            <t:signatureDuResponsableDuProjetOuDeSonRepresentant>
+                <t:nomDuSignataire>bn</t:nomDuSignataire>
+                <t:nombrePagesJointes>1</t:nombrePagesJointes>
+            </t:signatureDuResponsableDuProjetOuDeSonRepresentant>
+        </t:partieDT>
+        <t:partieDICT>
+            <t:noAffaireDeLexecutantDesTravaux>num_affaore2</t:noAffaireDeLexecutantDesTravaux>
+            <t:natureDeLaDeclaration>MR_3</t:natureDeLaDeclaration>
+            <t:executantDesTravaux>
+                <t:denomination>societe</t:denomination>
+                <t:complementService>complement</t:complementService>
+                <t:numero>21</t:numero>
+                <t:voie>rue des ecoles</t:voie>
+                <t:lieuDitBP>lieu-dit/dp</t:lieuDitBP>
+                <t:codePostal>38080</t:codePostal>
+                <t:commune>Saint-Alban de roche</t:commune>
+                <t:pays>FRANCE</t:pays>
+                <t:noSiret>39927837300010</t:noSiret>
+                <t:nomDeLaPersonneAContacter>DANIERE Benjamin</t:nomDeLaPersonneAContacter>
+                <t:tel>0689230191</t:tel>
+                <t:fax>0689230191</t:fax>
+                <t:courriel>benjamin@bimdata.io</t:courriel>
+            </t:executantDesTravaux>
+            <t:emplacementDesTravaux>
+                <t:CP>38080</t:CP>
+                <t:communePrincipale>Saint-Alban-de-Roche</t:communePrincipale>
+                <t:codeINSEE>38352</t:codeINSEE>
+                <t:nombreDeCommunes>1</t:nombreDeCommunes>
+                <t:listeDesEmplacementsDesCommunesConcernees>
+                    <t:emplacementDeLaCommuneConcernee>
+                        <t:nomDeLaCommune>Saint-Alban-de-Roche</t:nomDeLaCommune>
+                        <t:codePostal>38080</t:codePostal>
+                        <t:codeINSEE>38352</t:codeINSEE>
+                    </t:emplacementDeLaCommuneConcernee>
+                </t:listeDesEmplacementsDesCommunesConcernees>
+            </t:emplacementDesTravaux>
+            <t:emprise>
+                <t:geometrie srsName="urn:ogc:def:crs:EPSG::4171" srsDimension="2" gml:id="dictemprise0">
+                    <gml:surfaceMembers>
+                        <gml:Polygon gml:id="dict0">
+                            <gml:exterior>
+<gml:LinearRing>
+    <gml:coordinates>5.2246786504304215,45.59580447386982 5.224574044328498,45.59571251143962 5.224649146145262,45.59568060607154 5.224885180426526,45.59581198100034 5.2246786504304215,45.59580447386982</gml:coordinates>
+</gml:LinearRing>
+                            </gml:exterior>
+                        </gml:Polygon>
+                    </gml:surfaceMembers>
+                </t:geometrie>
+                <t:surface>154.13016258107325</t:surface>
+                <t:referenceDelaCarte>Photographies aériennes: Géoportail Numérique 2009; Carte: 2012; Réseaux routiers: 2011</t:referenceDelaCarte>
+            </t:emprise>
+            <t:souhaitsPourLeRecepisse>
+                <t:modeReceptionCourrier/>
+            </t:souhaitsPourLeRecepisse>
+            <t:travauxEtLeurCalendrier>
+                <t:natureDesTravaux>SOU</t:natureDesTravaux>
+                <t:natureDesTravaux>RBL</t:natureDesTravaux>
+                <t:decrivezLesTravaux>description</t:decrivezLesTravaux>
+                <t:techniquesUtilisees>VIB</t:techniquesUtilisees>
+                <t:autreTechnique>Autre technique</t:autreTechnique>
+                <t:profondeurMaxDExcavation>10</t:profondeurMaxDExcavation>
+                <t:modificationProfilTerrain>false</t:modificationProfilTerrain>
+                <t:communicationResultatsInvestigations>false</t:communicationResultatsInvestigations>
+                <t:distanceMinimaleEntreLesTravauxEtLaLigneElectrique>100.00</t:distanceMinimaleEntreLesTravauxEtLaLigneElectrique>
+                <t:souhaitLesPlansDesReseauxElectriqueAeriens>true</t:souhaitLesPlansDesReseauxElectriqueAeriens>
+                <t:datePrevuePourLeCommencementDesTravaux>2026-10-23+02:00</t:datePrevuePourLeCommencementDesTravaux>
+                <t:dureeDuChantierEnJours>5</t:dureeDuChantierEnJours>
+            </t:travauxEtLeurCalendrier>
+            <t:signatureDeLExecutantDesTravauxOuDeSonRepresentant>
+                <t:nomDuSignataire>bn</t:nomDuSignataire>
+                <t:nombrePagesJointes>1</t:nombrePagesJointes>
+            </t:signatureDeLExecutantDesTravauxOuDeSonRepresentant>
+            <t:noConsultationDuTeleservice>2026100801380T</t:noConsultationDuTeleservice>
+            <t:dateDeLaDeclaration>2026-10-08T16:16:46.318+02:00</t:dateDeLaDeclaration>
+        </t:partieDICT>
+    </t:dtDictConjointes>
+    <t:listeDesOuvrages>
+        <t:ouvrage>
+            <t:listeDesZones>
+                <t:zone>
+                    <t:code>38</t:code>
+                    <t:contact>
+                        <t:code>NAT</t:code>
+                        <t:societe>SEMIDAO chez Groupe NAT</t:societe>
+                        <t:lieuDitBP>TSA 62152</t:lieuDitBP>
+                        <t:codePostal>59810</t:codePostal>
+                        <t:commune>LESQUIN</t:commune>
+                        <t:codePays>FR</t:codePays>
+                        <t:courriel>semidao@craig.groupe-nat.com</t:courriel>
+                        <t:telephone>0359529113</t:telephone>
+                        <t:telephoneUrgence>0618433984</t:telephoneUrgence>
+                        <t:mailUrgence>semidao@craig.groupe-nat.com</t:mailUrgence>
+                        <t:telEndommagement>0618433984</t:telEndommagement>
+                        <t:site>www.groupe-nat.fr</t:site>
+                        <t:gestionDesFichiersDematerialises>
+                            <t:gereLesFichiersDematerialises>true</t:gereLesFichiersDematerialises>
+                            <t:formatDesFichiersDematerialises>XML_PDF</t:formatDesFichiersDematerialises>
+                        </t:gestionDesFichiersDematerialises>
+                    </t:contact>
+                </t:zone>
+            </t:listeDesZones>
+            <t:categorieOuvrage>NS</t:categorieOuvrage>
+            <t:classeOuvrage>CANALISATIONS_EAU_POTABLE</t:classeOuvrage>
+            <t:positionnementOuvrage>SOUTERRAIN</t:positionnementOuvrage>
+            <t:code>RESEAU AEP + EU + EP</t:code>
+            <t:statut>ACTIF</t:statut>
+            <t:dateCreation>2026-10-04+02:00</t:dateCreation>
+        </t:ouvrage>
+        <t:ouvrage>
+            <t:listeDesZones>
+                <t:zone>
+                    <t:code>Z_38352</t:code>
+                    <t:contact>
+                        <t:code>C1176</t:code>
+                        <t:nom>
+                            <ie:NomFamille>CURIAL</ie:NomFamille>
+                        </t:nom>
+                        <t:prenom>
+                            <ie:Prenom>Yohann</ie:Prenom>
+                        </t:prenom>
+                        <t:societe>COMMUNAUTE D AGGLOMERATION PORTE DE L ISERE CAPI</t:societe>
+                        <t:voie>TSA 70011</t:voie>
+                        <t:codePostal>69134</t:codePostal>
+                        <t:commune>DARDILLY CEDEX</t:commune>
+                        <t:codePays>FR</t:codePays>
+                        <t:courriel>capi@delegation.sogedata.fr</t:courriel>
+                        <t:telephone>0474272800</t:telephone>
+                        <t:telephoneUrgence>0474272800</t:telephoneUrgence>
+                        <t:faxUrgence>0474276928</t:faxUrgence>
+                        <t:mailUrgence>capi@delegation.sogedata.fr</t:mailUrgence>
+                        <t:telEndommagement>0474276917</t:telEndommagement>
+                        <t:site>www.capi38.fr</t:site>
+                        <t:gestionDesFichiersDematerialises>
+                            <t:gereLesFichiersDematerialises>true</t:gereLesFichiersDematerialises>
+                            <t:formatDesFichiersDematerialises>XML_PDF</t:formatDesFichiersDematerialises>
+                        </t:gestionDesFichiersDematerialises>
+                    </t:contact>
+                </t:zone>
+            </t:listeDesZones>
+            <t:categorieOuvrage>S</t:categorieOuvrage>
+            <t:classeOuvrage>LIGNES_ELECTRIQUES_ET_ECLAIRAGE_PUBLIC_HORS_TBT</t:classeOuvrage>
+            <t:code>327417</t:code>
+            <t:statut>ACTIF</t:statut>
+            <t:dateCreation>2024-06-16+02:00</t:dateCreation>
+            <t:TMD>false</t:TMD>
+        </t:ouvrage>
+        <t:ouvrage>
+            <t:listeDesZones>
+                <t:zone>
+                    <t:code>38352_SAINT-ALBAN-DE-ROCHE</t:code>
+                    <t:contact>
+                        <t:code>_|ERDFNAT$00000000003ykddi|_</t:code>
+                        <t:societe>ENEDIS-DRALP-ISERE A.R.E.</t:societe>
+                        <t:agence>CHEZ PROTYS P0118</t:agence>
+                        <t:lieuDitBP>CS 90125</t:lieuDitBP>
+                        <t:codePostal>27091</t:codePostal>
+                        <t:commune>EVREUX CEDEX 9</t:commune>
+                        <t:codePays>FR</t:codePays>
+                        <t:courriel>00000000003ykddi.ENEDIS@demat.protys.fr</t:courriel>
+                        <t:telephone>0479791868</t:telephone>
+                        <t:telephoneUrgence>0181624701</t:telephoneUrgence>
+                        <t:mailUrgence>00000000003ykddi.ENEDIS@demat.protys.fr</t:mailUrgence>
+                        <t:telEndommagement>0181624701</t:telEndommagement>
+                        <t:gestionDesFichiersDematerialises>
+                            <t:gereLesFichiersDematerialises>true</t:gereLesFichiersDematerialises>
+                            <t:formatDesFichiersDematerialises>XML_PDF</t:formatDesFichiersDematerialises>
+                        </t:gestionDesFichiersDematerialises>
+                    </t:contact>
+                </t:zone>
+            </t:listeDesZones>
+            <t:categorieOuvrage>S</t:categorieOuvrage>
+            <t:classeOuvrage>LIGNES_ELECTRIQUES_ET_ECLAIRAGE_PUBLIC_HORS_TBT</t:classeOuvrage>
+            <t:code>ENEDIS-00000000003YKDDI^1</t:code>
+            <t:statut>ACTIF</t:statut>
+            <t:dateCreation>2026-10-04+02:00</t:dateCreation>
+        </t:ouvrage>
+        <t:ouvrage>
+            <t:listeDesZones>
+                <t:zone>
+                    <t:code>SAINT-ALBAN-DE-ROCHE_38352</t:code>
+                    <t:contact>
+                        <t:code>_|GRDF$GRDF_355|_</t:code>
+                        <t:societe>GrDF URG SIRHO- NORD</t:societe>
+                        <t:agence>CHEZ PROTYS P0466</t:agence>
+                        <t:lieuDitBP>CS 90125</t:lieuDitBP>
+                        <t:codePostal>27091</t:codePostal>
+                        <t:commune>EVREUX CEDEX 9</t:commune>
+                        <t:codePays>FR</t:codePays>
+                        <t:courriel>GRDF_355.GRDF@demat.protys.fr</t:courriel>
+                        <t:telephone>0810300360</t:telephone>
+                        <t:telephoneUrgence>0810300360</t:telephoneUrgence>
+                        <t:mailUrgence>GRDF_355.GRDF@demat.protys.fr</t:mailUrgence>
+                        <t:telEndommagement>0247857444</t:telEndommagement>
+                        <t:site>www.protys.fr</t:site>
+                        <t:gestionDesFichiersDematerialises>
+                            <t:gereLesFichiersDematerialises>true</t:gereLesFichiersDematerialises>
+                            <t:formatDesFichiersDematerialises>XML_PDF</t:formatDesFichiersDematerialises>
+                        </t:gestionDesFichiersDematerialises>
+                    </t:contact>
+                </t:zone>
+            </t:listeDesZones>
+            <t:categorieOuvrage>S</t:categorieOuvrage>
+            <t:classeOuvrage>CANALISATIONS_GAZ_COMBUSTIBLES</t:classeOuvrage>
+            <t:code>ZIO_ALPES</t:code>
+            <t:statut>ACTIF</t:statut>
+            <t:dateCreation>2026-08-02+02:00</t:dateCreation>
+            <t:TMD>false</t:TMD>
+        </t:ouvrage>
+        <t:ouvrage>
+            <t:listeDesZones>
+                <t:zone>
+                    <t:code>ZONE_15792</t:code>
+                    <t:contact>
+                        <t:code>contact_584527</t:code>
+                        <t:nom>
+                            <ie:NomFamille>LORANT</ie:NomFamille>
+                        </t:nom>
+                        <t:prenom>
+                            <ie:Prenom>Serge</ie:Prenom>
+                        </t:prenom>
+                        <t:societe>AMBITION TELECOM</t:societe>
+                        <t:agence>Service réseau câblé et fibre optique</t:agence>
+                        <t:numero>12</t:numero>
+                        <t:voie>rue des Piverts</t:voie>
+                        <t:codePostal>69800</t:codePostal>
+                        <t:commune>ST PRIEST</t:commune>
+                        <t:codePays>FR</t:codePays>
+                        <t:courriel>Gestion-DT-DICT@ambitiontelecom.com</t:courriel>
+                        <t:fax>0000000000</t:fax>
+                        <t:telephone>0478905148</t:telephone>
+                        <t:telephoneUrgence>0478905148</t:telephoneUrgence>
+                        <t:faxUrgence>0000000000</t:faxUrgence>
+                        <t:mailUrgence>serge.lorant@ambitiontelecom.com</t:mailUrgence>
+                        <t:telEndommagement>0601097043</t:telEndommagement>
+                        <t:gestionDesFichiersDematerialises>
+                            <t:gereLesFichiersDematerialises>true</t:gereLesFichiersDematerialises>
+                            <t:formatDesFichiersDematerialises>XML_PDF</t:formatDesFichiersDematerialises>
+                        </t:gestionDesFichiersDematerialises>
+                    </t:contact>
+                </t:zone>
+            </t:listeDesZones>
+            <t:categorieOuvrage>NSFS</t:categorieOuvrage>
+            <t:classeOuvrage>COMMUNICATIONS_ELECTRONIQUES_ET_LIGNES_ELECTRIQUES_ECLAIRAGE_TBT</t:classeOuvrage>
+            <t:code>286347</t:code>
+            <t:statut>ACTIF</t:statut>
+            <t:dateCreation>2018-11-11+01:00</t:dateCreation>
+        </t:ouvrage>
+        <t:ouvrage>
+            <t:listeDesZones>
+                <t:zone>
+                    <t:code>38352_SAINT-ALBAN-DE-ROCHE</t:code>
+                    <t:contact>
+                        <t:code>_|FTO$FT83H5|_</t:code>
+                        <t:societe>Orange H5 ALPES</t:societe>
+                        <t:agence>Service DICT</t:agence>
+                        <t:lieuDitBP>TSA 70011</t:lieuDitBP>
+                        <t:codePostal>69134</t:codePostal>
+                        <t:commune>DARDILLY CEDEX</t:commune>
+                        <t:codePays>FR</t:codePays>
+                        <t:courriel>FT83H5.FTO@demat.protys.fr</t:courriel>
+                        <t:telephone>0969393212</t:telephone>
+                        <t:mailUrgence>FT83H5.FTO@demat.protys.fr</t:mailUrgence>
+                        <t:telEndommagement>0810300111</t:telEndommagement>
+                        <t:site>www.protys.fr</t:site>
+                        <t:gestionDesFichiersDematerialises>
+                            <t:gereLesFichiersDematerialises>true</t:gereLesFichiersDematerialises>
+                            <t:formatDesFichiersDematerialises>XML_PDF</t:formatDesFichiersDematerialises>
+                        </t:gestionDesFichiersDematerialises>
+                    </t:contact>
+                </t:zone>
+            </t:listeDesZones>
+            <t:categorieOuvrage>NS</t:categorieOuvrage>
+            <t:classeOuvrage>COMMUNICATIONS_ELECTRONIQUES_ET_LIGNES_ELECTRIQUES_ECLAIRAGE_TBT</t:classeOuvrage>
+            <t:code>ORANGE-38</t:code>
+            <t:statut>ACTIF</t:statut>
+            <t:dateCreation>2026-10-04+02:00</t:dateCreation>
+        </t:ouvrage>
+        <t:ouvrage>
+            <t:listeDesZones>
+                <t:zone>
+                    <t:code>Z_329172_8</t:code>
+                    <t:contact>
+                        <t:code>C355162</t:code>
+                        <t:societe>SFR - XP FIBRE</t:societe>
+                        <t:agence>XP FIBRE</t:agence>
+                        <t:complement>CHEZ SOGELINK</t:complement>
+                        <t:voie>TSA 70011</t:voie>
+                        <t:codePostal>69134</t:codePostal>
+                        <t:commune>DARDILLY CEDEX</t:commune>
+                        <t:codePays>FR</t:codePays>
+                        <t:courriel>xp-fibre@demat.sogelink.fr</t:courriel>
+                        <t:telephone>0980804303</t:telephone>
+                        <t:telEndommagement>0298464627</t:telEndommagement>
+                        <t:gestionDesFichiersDematerialises>
+                            <t:gereLesFichiersDematerialises>true</t:gereLesFichiersDematerialises>
+                            <t:formatDesFichiersDematerialises>XML_PDF</t:formatDesFichiersDematerialises>
+                        </t:gestionDesFichiersDematerialises>
+                    </t:contact>
+                </t:zone>
+            </t:listeDesZones>
+            <t:categorieOuvrage>NS</t:categorieOuvrage>
+            <t:classeOuvrage>COMMUNICATIONS_ELECTRONIQUES_ET_LIGNES_ELECTRIQUES_ECLAIRAGE_TBT</t:classeOuvrage>
+            <t:positionnementOuvrage>AERIEN_ET_SOUTERRAIN</t:positionnementOuvrage>
+            <t:code>329172</t:code>
+            <t:statut>ACTIF</t:statut>
+            <t:dateCreation>2026-10-04+02:00</t:dateCreation>
+            <t:TMD>false</t:TMD>
+        </t:ouvrage>
+    </t:listeDesOuvrages>
+    <t:ouvragesAbandonnes>
+        <t:presenceREADES>false</t:presenceREADES>
+    </t:ouvragesAbandonnes>
+</t:dossierConsultation>
