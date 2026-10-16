@@ -3,10 +3,8 @@ from functools import cached_property
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from paddleocr import PaddleOCR
 from pypdf import PdfReader
 
-from extraction_with_ocr import PaddlePlanExtractor
 from parsers.acroform_pdf_parser import AcroformPDFParser
 from parsers.flattened_pdf_parser import FlattenedPDFParser
 from parsers.image_parser import ImageParser
@@ -210,16 +208,8 @@ if __name__ == "__main__":
         xml_parser = XMLParser(input_file_path)
         content = xml_parser.read_content()
     elif document_inspector.document_info["file_type"] == "image":
-        jpeg_parser = ImageParser(input_file_path)
-        text_extractor = PaddlePlanExtractor(
-            input_file_path,
-            PaddleOCR(
-                lang="fr",
-                use_textline_orientation=True,
-            ),
-        )
-        text_extractor.run()
-        breakpoint()
+        image_parser = ImageParser(input_file_path)
+        content = image_parser.read_content()
 
     print(content)
 
