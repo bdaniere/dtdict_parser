@@ -3,10 +3,13 @@ from functools import cached_property
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from paddleocr import PaddleOCR
 from pypdf import PdfReader
 
+from extraction_with_ocr import PaddlePlanExtractor
 from parsers.acroform_pdf_parser import AcroformPDFParser
 from parsers.flattened_pdf_parser import FlattenedPDFParser
+from parsers.image_parser import ImageParser
 from parsers.xml_parser import XMLParser
 
 # ██████╗  ██████╗  ██████╗██╗   ██╗███╗   ███╗███████╗███╗   ██╗████████╗    ██╗███╗   ██╗███████╗ ██████╗██████╗ ███████╗ ██████╗████████╗ ██████╗ ██████╗
@@ -46,6 +49,28 @@ class DocumentInspector:
                 return f.read(5) == b"%PDF-"
         except OSError:
             return False
+
+    @cached_property
+    def is_image(self) -> bool:
+        try:
+            with open(self.file_path, "rb") as f:
+                header = f.read(12)
+        except OSError:
+            return False
+
+        return header.startswith(
+            (
+                b"\x89PNG\r\n\x1a\n",
+                b"GIF87a",
+                b"GIF89a",
+                b"BM",
+                b"II*\x00",
+                b"MM\x00*",
+                b"\x00\x00\x01\x00",
+                b"\x00\x00\x00\x0cjP  \r\n\x87\n",
+                b"\xff\xd8\xff",
+            )
+        ) or (header.startswith(b"RIFF") and header[8:12] == b"WEBP")
 
     @cached_property
     def is_xml(self) -> bool:
@@ -95,6 +120,9 @@ class DocumentInspector:
         if self.is_pdf:
             return FileType.PDF
 
+        if self.is_image:
+            return FileType.IMAGE
+
         if self.is_xml:
             return FileType.XML
 
@@ -105,6 +133,9 @@ class DocumentInspector:
 
         if self.file_type == FileType.XML:
             return ContentType.XML
+
+        if self.file_type == FileType.IMAGE:
+            return ContentType.IMAGE
 
         if self.file_type != FileType.PDF:
             return ContentType.UNKNOWN
@@ -152,9 +183,13 @@ if __name__ == "__main__":
     # input_file_path = Path(
     #     "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_1.pdf"
     # )
+    # input_file_path = Path(
+    #     "dev_tools/2026100801380T_DDC/2026100801380T_DDC_description/2026100801380T_DDC_description.xml"
+    # )
+
     input_file_path = Path(
-        "dev_tools/2026100801380T_DDC/2026100801380T_DDC_description/2026100801380T_DDC_description.xml"
-    )
+        "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_7_page-0001.jpg"
+    )  # JPEG image input file
 
     document_inspector = DocumentInspector(input_file_path)
     print(document_inspector.document_info)
@@ -174,6 +209,17 @@ if __name__ == "__main__":
     elif document_inspector.document_info["file_type"] == "xml":
         xml_parser = XMLParser(input_file_path)
         content = xml_parser.read_content()
+    elif document_inspector.document_info["file_type"] == "image":
+        jpeg_parser = ImageParser(input_file_path)
+        text_extractor = PaddlePlanExtractor(
+            input_file_path,
+            PaddleOCR(
+                lang="fr",
+                use_textline_orientation=True,
+            ),
+        )
+        text_extractor.run()
+        breakpoint()
 
     print(content)
 
