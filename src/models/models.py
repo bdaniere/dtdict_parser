@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from datetime import date, datetime
+from datetime import date
 from enum import Enum
 
 
@@ -171,7 +171,7 @@ class Declaration:
 
     declaration_type: DeclarationType  # hors XML
     noConsultationDuTeleservice: str | None = None
-    dateDeLaDeclaration: datetime | None = None
+    dateDeLaDeclaration: date | None = None
     emprise: Emprise | None = None
     souhaitsPourLeRecepisse: SouhaitsPourLeRecepisse | None = None
 
