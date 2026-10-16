@@ -196,19 +196,40 @@ class FlattenedPDFParser(ParserFactory):
             )
         )
 
+        texts = {
+            field_name: (
+                self._crop_center(page, tuple(field["bbox"])).extract_text() or ""
+            ).strip()
+            for field_name, field in self.template_cerfa["fields"].items()
+        }
+
+        return self._fill_results(results, texts)
+
+    def _fill_results(self, results: dict, texts: dict[str, str]) -> dict:
+        """
+        Convert the text read for each template field according to its type.
+
+        Args:
+            texts: text per template field name ("SECTION.name"); for a
+            checkbox, any non-empty text means checked.
+        """
+
         for field_name, field in self.template_cerfa["fields"].items():
             category, name = field_name.split(".", 1)
-            area = self._crop_center(page, tuple(field["bbox"]))
-            text = (area.extract_text() or "").strip()
+            text = texts[field_name]
 
             if field["type"] == "checkbox":
                 results[category][name] = bool(text)
             elif field["type"] == "date":
                 results[category][name] = self._parse_date(text)
             else:
-                results[category][name] = text or None
+                results[category][name] = self._clean_text(name, text) or None
 
         return results
+
+    def _clean_text(self, name: str, text: str) -> str:
+        """Hook to normalize the text of a field; identity by default."""
+        return text
 
     def extract_geometry(self, page: pdfplumber_page, results) -> dict:
         """
