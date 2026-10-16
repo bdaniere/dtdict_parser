@@ -20,8 +20,9 @@ class ImageParser(FlattenedPDFParser):
 
     # Size (in PDF points) of the page the templates were drawn on.
     TEMPLATE_PAGE_SIZE = (595.0, 842.0)
-    # Dark pixel ratio (inside a checkbox) above which it is considered checked.
-    CHECKBOX_FILL_THRESHOLD = 0.12
+    # Dark pixel ratio (inside a checkbox) above which it is considered checked
+    # (measured: empty boxes <= 0.15, checked boxes >= 0.40).
+    CHECKBOX_FILL_THRESHOLD = 0.3
     CHECKBOX_INNER_MARGIN = 0.2
     # White border added around crops: the OCR detector struggles on tight crops.
     CROP_PADDING_PX = 20

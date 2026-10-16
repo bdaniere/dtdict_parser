@@ -105,8 +105,15 @@ poetry run python src/dt_dict_parser.py
 Pour lancer les tests :
 
 ```bash
-poetry run python -m unittest discover tests
+poetry install   # installe aussi pytest (groupe dev)
+poetry run pytest
 ```
+
+Le plan de test couvre : la détection des types de fichiers, les parsers XML et AcroForm
+(valeurs, cohérence PDF/XML, DT seule), la conversion commune des valeurs du gabarit et le
+parser d'images (cases à cocher, valeurs OCR comparées à l'AcroForm, images invalides).
+Les tests du parser d'images sont ignorés si `paddleocr` / `opencv` sont absents, et prennent
+une dizaine de secondes (OCR). Les fichiers d'exemple sont dans `tests/testdata/`.
 
 ---
 
@@ -116,10 +123,14 @@ poetry run python -m unittest discover tests
 dtdict_parser/
 ├── pyproject.toml         # Configuration Poetry et liste des dépendances
 ├── README.md              # Documentation du projet
-├── tests/                 # Tests unitaires (détection des types de fichiers)
+├── tests/                 # Tests unitaires
+│   ├── conftest.py        # Fixtures : fichiers d'exemple et résultats parsés (OCR une seule fois)
+│   ├── testdata/          # XML, PDF AcroForm et JPG d'exemple
+│   ├── test_document_inspector.py
+│   ├── test_xml_and_acroform_parsers.py
+│   └── test_image_parser.py
 └── src/
     ├── dt_dict_parser.py  # DocumentInspector et point d'entrée
-    ├── extraction_with_ocr.py  # Utilitaire OCR PaddleOCR (non utilisé par ImageParser)
     ├── parsers/
     │   ├── base.py                 # Classe de base des parsers
     │   ├── xml_parser.py           # Parser XML
