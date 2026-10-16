@@ -35,6 +35,19 @@ class ContentType(Enum):
     UNKNOWN = "unknown"
 
 
+IMAGE_SIGNATURES: dict[str, bytes] = {
+    "png": b"\x89PNG\r\n\x1a\n",
+    "gif87": b"GIF87a",
+    "gif89": b"GIF89a",
+    "bmp": b"BM",
+    "tiff_le": b"II*\x00",
+    "tiff_be": b"MM\x00*",
+    "ico": b"\x00\x00\x01\x00",
+    "jpeg2000": b"\x00\x00\x00\x0cjP  \r\n\x87\n",
+    "jpeg": b"\xff\xd8\xff",
+}
+
+
 # TODO : avoir une approche page par page : es-ce nécéssaire ?
 class DocumentInspector:
     def __init__(self, file_path: Path):
@@ -56,19 +69,9 @@ class DocumentInspector:
         except OSError:
             return False
 
-        return header.startswith(
-            (
-                b"\x89PNG\r\n\x1a\n",
-                b"GIF87a",
-                b"GIF89a",
-                b"BM",
-                b"II*\x00",
-                b"MM\x00*",
-                b"\x00\x00\x01\x00",
-                b"\x00\x00\x00\x0cjP  \r\n\x87\n",
-                b"\xff\xd8\xff",
-            )
-        ) or (header.startswith(b"RIFF") and header[8:12] == b"WEBP")
+        return header.startswith(tuple(IMAGE_SIGNATURES.values())) or (
+            header.startswith(b"RIFF") and header[8:12] == b"WEBP"
+        )
 
     @cached_property
     def is_xml(self) -> bool:
