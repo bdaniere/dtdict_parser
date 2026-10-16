@@ -118,7 +118,18 @@ class ImageParser(FlattenedPDFParser):
             if field["type"] == "checkbox":
                 texts[name] = "X" if self._is_checked(field["bbox"]) else ""
 
-        return self._fill_results(results, texts)
+        results = self._fill_results(results, texts)
+        for category in ("DT", "DICT"):
+            values = results[category]
+            for name, checked in list(values.items()):
+                if checked is not True:
+                    continue
+                if name.endswith(("_true", "_false")):
+                    field_name, answer = name.rsplit("_", 1)
+                    values[field_name] = answer == "true"
+                elif name.startswith("typeEntite_"):
+                    values["typeEntite"] = name.removeprefix("typeEntite_")
+        return results
 
     def _clean_text(self, name: str, text: str) -> str:
         if name.rsplit(".", 1)[-1] in self.COMB_FIELDS:
