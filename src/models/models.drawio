@@ -1,0 +1,118 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Modèle DT-DICT" id="ciVnreu-6XbZJtztSYum">
+    <mxGraphModel dx="6120" dy="2409" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=10;fontSize=13;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«enum» NatureProjet&lt;/div&gt;&lt;hr/&gt;CNS · CSP · CUR · DEC · DEM&lt;br/&gt;DRA · EBL · ELG · ERE · ESC&lt;br/&gt;FAC · FOH · FOV · OTR · OUV&lt;br/&gt;RBL · SFP · SOU · TER · CHA" vertex="1">
+          <mxGeometry height="160" width="330" x="-1519.997142857143" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=10;fontSize=13;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«enum» TechniqueTravaux&lt;/div&gt;&lt;hr/&gt;BTO · BRO · DBR · TRA · ELE&lt;br/&gt;TUB · VIB · STA · EXP · TED" vertex="1">
+          <mxGeometry height="130" width="330" x="-1519.997142857143" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=10;fontSize=13;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«enum» NatureDeclaration&lt;/div&gt;&lt;hr/&gt;INITIAL · INVEST · MR_3 (MR3)&lt;br/&gt;INTERUP · MR_6 (MR6)" vertex="1">
+          <mxGeometry height="130" width="330" x="-1519.997142857143" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=10;fontSize=13;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«enum» TypeEntite&lt;/div&gt;&lt;hr/&gt;PERSONNE_PHYSIQUE&lt;br/&gt;PERSONNE_MORALE" vertex="1">
+          <mxGeometry height="130" width="330" x="-1519.997142857143" y="1169" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=10;fontSize=13;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«enum» DeclarationType&lt;/div&gt;&lt;hr/&gt;DT · DICT · CONJOINTE" vertex="1">
+          <mxGeometry height="110" width="330" x="-1519.997142857143" y="1360" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacing=10;fontSize=13;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» Declaration&lt;/div&gt;&lt;hr/&gt;+ declaration_type: DeclarationType&lt;br/&gt;+ noConsultationDuTeleservice: str?&lt;br/&gt;+ dateDeLaDeclaration: date?&lt;br/&gt;+ emprise: Emprise?&lt;br/&gt;+ souhaitsPourLeRecepisse: SouhaitsPourLeRecepisse?" vertex="1">
+          <mxGeometry height="200" width="500" x="-169.99714285714288" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacing=10;fontSize=13;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» DT&lt;/div&gt;&lt;hr/&gt;Hérite de Declaration&lt;br/&gt;+ noConsultationDuTeleserviceSeize: str?&lt;br/&gt;+ noAffaireDuResponsableDuProjet: str?&lt;br/&gt;+ typeEntite: TypeEntite?&lt;br/&gt;+ declarationConjointeDTDICT: bool?&lt;br/&gt;+ responsableDuProjet: Acteur?&lt;br/&gt;+ representantDuResponsableDeProjet: Acteur?&lt;br/&gt;+ emplacementDuProjet: Emplacement?&lt;br/&gt;+ projetEtSonCalendrier: ProjetEtSonCalendrier?&lt;br/&gt;+ investigationsComplementaires: InvestigationsComplementaires?&lt;br/&gt;+ signatureDuResponsableDuProjetOuDeSonRepresentant: Signature?" vertex="1">
+          <mxGeometry height="420" width="560" x="198.1428571428571" y="749" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacing=10;fontSize=13;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» DICT&lt;/div&gt;&lt;hr/&gt;Hérite de Declaration&lt;br/&gt;+ noAffaireDeLexecutantDesTravaux: str?&lt;br/&gt;+ natureDeLaDeclaration: NatureDeclaration?&lt;br/&gt;+ executantDesTravaux: Acteur?&lt;br/&gt;+ emplacementDesTravaux: Emplacement?&lt;br/&gt;+ travauxEtLeurCalendrier: TravauxEtLeurCalendrier?&lt;br/&gt;+ signatureDeLExecutantDesTravauxOuDeSonRepresentant: Signature?" vertex="1">
+          <mxGeometry height="280" width="560" x="-499.9971428571429" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» Acteur&lt;/div&gt;&lt;hr/&gt;+ denomination: str?&lt;br/&gt;+ complementService: str?&lt;br/&gt;+ numero: str?&lt;br/&gt;+ voie: str?&lt;br/&gt;+ lieuDitBP: str?&lt;br/&gt;+ codePostal: str?&lt;br/&gt;+ commune: str?&lt;br/&gt;+ pays: str?&lt;br/&gt;+ noSiret: str?&lt;br/&gt;+ personneAcontacter: str?&lt;br/&gt;+ nomDeLaPersonneAContacter: str?&lt;br/&gt;+ tel: str?&lt;br/&gt;+ fax: str?&lt;br/&gt;+ courriel: str?" vertex="1">
+          <mxGeometry height="360" width="460" x="360.0028571428571" y="1280" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» Emplacement&lt;/div&gt;&lt;hr/&gt;+ adresse: str?&lt;br/&gt;+ CP: str?&lt;br/&gt;+ communePrincipale: str?&lt;br/&gt;+ codeINSEE: str?&lt;br/&gt;+ nombreDeCommunes: int?&lt;br/&gt;+ listeDesEmplacementsDesCommunesConcernees: list[EmplacementDeLaCommuneConcernee]" vertex="1">
+          <mxGeometry height="220" width="520" x="-199.997142857143" y="1690" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» EmplacementDeLaCommuneConcernee&lt;/div&gt;&lt;hr/&gt;+ nomDeLaCommune: str?&lt;br/&gt;+ codePostal: str?&lt;br/&gt;+ codeINSEE: str?" vertex="1">
+          <mxGeometry height="150" width="470" x="-199.99714285714288" y="1960" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» Emprise&lt;/div&gt;&lt;hr/&gt;+ geometrie: str?&lt;br/&gt;+ surface: float?&lt;br/&gt;+ referenceDelaCarte: str?" vertex="1">
+          <mxGeometry height="140" width="380" x="840.002857142857" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» SouhaitsPourLeRecepisse&lt;/div&gt;&lt;hr/&gt;+ souhaiteRecevoirLeRecepisse: bool?&lt;br/&gt;+ modeReceptionElectronique: ModeReceptionElectronique?&lt;br/&gt;+ modeReceptionCourrier: ModeReceptionCourrier?" vertex="1">
+          <mxGeometry height="160" width="500" x="828.1428571428571" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» ModeReceptionElectronique&lt;/div&gt;&lt;hr/&gt;+ tailleDesPlans: str?&lt;br/&gt;+ couleurDesPlans: bool?&lt;br/&gt;+ souhaitDePlansVectoriels: bool?&lt;br/&gt;+ formatDesPlansVectoriels: str?" vertex="1">
+          <mxGeometry height="170" width="430" x="1630.002857142857" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» ModeReceptionCourrier&lt;/div&gt;&lt;hr/&gt;(classe vide : présence = courrier)" vertex="1">
+          <mxGeometry height="110" width="430" x="1630.002857142857" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» ProjetEtSonCalendrier&lt;/div&gt;&lt;hr/&gt;+ natureDesTravaux: list[NatureProjet]&lt;br/&gt;+ decrivezLeProjet: str?&lt;br/&gt;+ emploiDeTechniquesSansTranchees: bool?&lt;br/&gt;+ distanceMinimaleEntreLesTravauxEtLaLigneElectrique: float?&lt;br/&gt;+ souhaitLesPlansDesReseauxElectriqueAeriens: bool?&lt;br/&gt;+ datePrevuePourLeCommencementDesTravaux: date?&lt;br/&gt;+ dureeDuChantierEnJours: int?" vertex="1">
+          <mxGeometry height="250" width="520" x="981.0028571428571" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» TravauxEtLeurCalendrier&lt;/div&gt;&lt;hr/&gt;+ natureDesTravaux: list[NatureProjet]&lt;br/&gt;+ decrivezLesTravaux: str?&lt;br/&gt;+ techniquesUtilisees: list[TechniqueTravaux]&lt;br/&gt;+ autreTechnique: str?&lt;br/&gt;+ profondeurMaxDExcavation: float?&lt;br/&gt;+ modificationProfilTerrain: bool?&lt;br/&gt;+ communicationResultatsInvestigations: bool?&lt;br/&gt;+ distanceMinimaleEntreLesTravauxEtLaLigneElectrique: float?&lt;br/&gt;+ souhaitLesPlansDesReseauxElectriqueAeriens: bool?&lt;br/&gt;+ datePrevuePourLeCommencementDesTravaux: date?&lt;br/&gt;+ dureeDuChantierEnJours: int?" vertex="1">
+          <mxGeometry height="350" width="560" x="-1069.997142857143" y="1320" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» InvestigationsComplementaires&lt;/div&gt;&lt;hr/&gt;+ realisationDInvestigationsComplementaires: bool?&lt;br/&gt;+ motifDeRealisationOuNonDInvestigation: str?&lt;br/&gt;+ dateDesInvestigationsComplementaires: date?&lt;br/&gt;+ InvestigationsSusceptibleDeNecessiterUneDICT: bool?&lt;br/&gt;+ envoiDesResultatsAuxExploitantsDOuvragesEtAuxEntreprises: bool?" vertex="1">
+          <mxGeometry height="240" width="480" x="990.0028571428571" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=12;" value="&lt;div style=&quot;font-weight:bold&quot;&gt;«dataclass» Signature&lt;/div&gt;&lt;hr/&gt;+ nomDuSignataire: str?&lt;br/&gt;+ nombrePagesJointes: int?" vertex="1">
+          <mxGeometry height="120" width="420" x="-469.997142857143" y="1550" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-24" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-11" style="endArrow=block;endFill=0;html=1;rounded=0;strokeWidth=1.5;" target="9pPSm-DEhqJaxltTtZ5n-10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-25" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-12" style="endArrow=block;endFill=0;html=1;rounded=0;strokeWidth=1.5;" target="9pPSm-DEhqJaxltTtZ5n-10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-26" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-10" style="endArrow=diamond;endFill=0;html=1;rounded=0;strokeWidth=1;" target="9pPSm-DEhqJaxltTtZ5n-16" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-27" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-10" style="endArrow=diamond;endFill=0;html=1;rounded=0;strokeWidth=1;" target="9pPSm-DEhqJaxltTtZ5n-17" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-28" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-17" style="endArrow=diamond;endFill=0;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-18" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-29" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-17" style="endArrow=diamond;endFill=0;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-19" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-30" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-14" style="endArrow=diamond;endFill=0;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-15" value="0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-31" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-11" style="endArrow=open;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-13" value="responsable 0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-32" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-11" style="endArrow=open;html=1;rounded=0;dashed=1;" target="9pPSm-DEhqJaxltTtZ5n-13" value="représentant 0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-33" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-11" style="endArrow=open;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-14" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-34" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-11" style="endArrow=open;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-20" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-35" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-11" style="endArrow=open;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-22" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-36" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-11" style="endArrow=open;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-23" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-37" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-12" style="endArrow=open;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-13" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-38" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-12" style="endArrow=open;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-14" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-39" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-12" style="endArrow=open;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-21" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9pPSm-DEhqJaxltTtZ5n-40" edge="1" parent="1" source="9pPSm-DEhqJaxltTtZ5n-12" style="endArrow=open;html=1;rounded=0;" target="9pPSm-DEhqJaxltTtZ5n-23" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
