@@ -1,6 +1,6 @@
 {
     "DT": {
-        "No_GU_DT": "noConsultationDuTeleservice",
+        "No_GU_DT": "mainNoConsultationDuTeleservice",
         "No_affaire_responsable_projet": "noAffaireDuResponsableDuProjet",
         "Responsable_projet": "responsableDuProjet.denomination",
         "Pays_DT": "responsableDuProjet.pays",
