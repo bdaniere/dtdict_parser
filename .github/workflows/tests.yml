@@ -15,15 +15,15 @@ jobs:
       - name: code_recovery
         uses: actions/checkout@v6
 
+      - name: poetry_installer
+        run: pipx install poetry
+
       - name: python_installer
         uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: poetry
           cache-dependency-path: poetry.lock
-
-      - name: poetry_installer
-        run: pipx install poetry
 
       - name: tests_runner
         run: |
