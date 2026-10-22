@@ -81,7 +81,25 @@ class FlattenedPDFParser(ParserFactory):
         declarations = []
         for section, cls in (("DT", DT), ("DICT", DICT)):
             values = dict(results[section])
-            if not any(v not in (None, False) for v in values.values()):
+            has_section_content = any(
+                value not in (None, False, "", [])
+                and not key.startswith("souhaitsPourLeRecepisse.")
+                and not key.endswith(
+                    ".listeDesEmplacementsDesCommunesConcernees"
+                )
+                for key, value in values.items()
+            )
+            has_any_content = any(
+                value not in (None, False, "", []) for value in values.values()
+            )
+            if not has_any_content or (
+                not values.get(
+                    "noConsultationDuTeleservice"
+                    if section == "DICT"
+                    else "mainNoConsultationDuTeleservice"
+                )
+                and not has_section_content
+            ):
                 continue
 
             if section == "DICT":
