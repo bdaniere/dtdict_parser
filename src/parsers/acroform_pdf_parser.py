@@ -23,13 +23,19 @@ class AcroformPDFParser(FlattenedPDFParser):
         ParserFactory.__init__(self, page)
         with open("./models/acroform_template.json", encoding="utf-8") as f:
             self.text_fields = json.load(f)
+        with open("./models/template_cerfa_detection.json", encoding="utf-8") as f:
+            self.template_cerfa_detection = json.load(f)
 
     def read_content(self) -> list[DT | DICT]:
         """
         Returns:
             list[DT | DICT]: the declarations found in the form fields of the
-            page (both when the form is filled as a joint DT-DICT).
+            page (both when the form is filled as a joint DT-DICT); empty if
+            the page is not the cerfa.
         """
+
+        if not self.is_cerfa():
+            return []
 
         raw = {
             name: value.strip()

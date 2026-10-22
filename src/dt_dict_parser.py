@@ -360,20 +360,20 @@ TODO
 
 if __name__ == "__main__":
     # input_file_path = Path("/home/bn/Documents/maquette/Travaux-Prevelles-09-2026.pdf")
-    input_file_path = Path(
-        "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_1.pdf"
-    )  # acroform_pdf
+    # input_file_path = Path(
+    #     "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_1.pdf"
+    # )  # acroform_pdf
     # input_file_path = Path(
     #     "dev_tools/2026100801380T_DDC/2026100801380T_DDC_description/2026100801380T_DDC_description.xml"
-    # ) # XML input file
+    # )  # XML input file
 
     # input_file_path = Path(
     #     "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_7_page-0001.jpg"
     # )  # JPEG image input file
 
-    # input_file_path = Path(
-    #     "/home/bn/Documents/Perso/dtdict_parser/src/dev_tools/2026100800884T_DDC/2026100800884T_DDC_emprise.pdf"
-    # )
+    input_file_path = Path(
+        "/home/bn/Documents/Perso/dtdict_parser/src/dev_tools/2026100800884T_DDC/2026100800884T_DDC_emprise.pdf"
+    )
 
     document_inspector = DocumentInspector(input_file_path)
     print(document_inspector.document_info)

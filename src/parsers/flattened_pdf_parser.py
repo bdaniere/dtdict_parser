@@ -49,7 +49,7 @@ class FlattenedPDFParser(ParserFactory):
         if not (abs(page.width - 595) < 2 and abs(page.height - 842) < 2):
             raise NotImplementedError("Page dimensions are not A4 / rezise need ?")
 
-        if not self._is_dt_dict_cerfa(page):
+        if not self.is_cerfa():
             return []
 
         results = self.extract_cerfa_data(page, {"DT": {}, "DICT": {}, "global": {}})
@@ -169,6 +169,10 @@ class FlattenedPDFParser(ParserFactory):
         except (ValueError, TypeError):
             return None
         return value
+
+    def is_cerfa(self) -> bool:
+        """Check that the page is the DT-DICT cerfa (title and number at their place)."""
+        return self._is_dt_dict_cerfa(self.page.content)
 
     def _is_dt_dict_cerfa(self, page: pdfplumber_page) -> bool:
         """
