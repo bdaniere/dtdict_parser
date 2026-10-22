@@ -126,12 +126,8 @@ class DocumentInspector:
         Extract AcroForm fields if present.
         """
 
-        try:
-            fields = self.pdf_reader.get_form_text_fields()
-            return fields or {}
-
-        except Exception:
-            return {}
+        fields = self.pdf_reader.get_form_text_fields()
+        return fields or {}
 
     @cached_property
     def pdf_reader(self) -> PdfReader:
