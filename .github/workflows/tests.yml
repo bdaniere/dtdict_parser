@@ -1,0 +1,33 @@
+```yaml
+name: dtdict_parser
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: code_recovery
+        uses: actions/checkout@v6
+
+      - name: python_installer
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: poetry
+          cache-dependency-path: poetry.lock
+
+      - name: poetry_installer
+        run: pipx install poetry
+
+      - name: tests_runner
+        run: |
+          poetry install --no-interaction --no-ansi
+          poetry run pytest
+```
