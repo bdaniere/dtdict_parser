@@ -12,7 +12,7 @@ def test_xml_joint_declaration_gives_a_dt_and_a_dict(xml_declarations):
     assert isinstance(dict_, DICT)
     assert dt.declaration_type == DeclarationType.CONJOINTE
     assert dict_.declaration_type == DeclarationType.DICT
-    assert dt.noConsultationDuTeleservice == "2026100801380T"
+    assert dt.mainNoConsultationDuTeleservice == "2026100801380T"
     assert dict_.noConsultationDuTeleservice == "2026100801380T"
 
 
@@ -33,7 +33,7 @@ def test_acroform_joint_declaration_gives_a_dt_and_a_dict(acroform_declarations)
 
     assert dt.declaration_type == DeclarationType.CONJOINTE
     assert dict_.declaration_type == DeclarationType.DICT
-    assert dt.noConsultationDuTeleservice == "2026100801380T"
+    assert dt.mainNoConsultationDuTeleservice == "2026100801380T"
     assert dt.dateDeLaDeclaration.date() == date(2026, 10, 8)
 
 
@@ -52,7 +52,7 @@ def test_pdf_and_xml_agree_on_the_same_declaration(xml_declarations, acroform_de
     xml_dt, xml_dict = xml_declarations
     pdf_dt, pdf_dict = acroform_declarations
 
-    assert xml_dt.noConsultationDuTeleservice == pdf_dt.noConsultationDuTeleservice
+    assert xml_dt.mainNoConsultationDuTeleservice == pdf_dt.mainNoConsultationDuTeleservice
     assert (
         xml_dt.signatureDuResponsableDuProjetOuDeSonRepresentant
         == pdf_dt.signatureDuResponsableDuProjetOuDeSonRepresentant
@@ -68,4 +68,4 @@ def test_acroform_dt_only_declaration(dt_pdf):
     dt = AcroformPDFParser(dt_pdf).read_content()[0]
 
     assert dt.declaration_type == DeclarationType.DT
-    assert dt.noConsultationDuTeleservice == "2026100801140TJG"
+    assert dt.mainNoConsultationDuTeleservice == "2026100801140TJG"
