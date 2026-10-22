@@ -9,7 +9,7 @@ import pdfplumber
 from pypdf import PageObject, PdfReader
 
 from models.models import DICT, DT, Emprise
-from pages import ImagePage, PDFPage, XMLPage
+from models.pages import ImagePage, PDFPage, XMLPage
 from parsers.acroform_pdf_parser import AcroformPDFParser
 from parsers.flattened_pdf_parser import FlattenedPDFParser
 from parsers.image_parser import ImageParser
