@@ -6,6 +6,7 @@ from xml.etree import ElementTree as ET
 
 import cv2
 import pdfplumber
+from pdfplumber.pdf import PDF
 from pypdf import PageObject, PdfReader
 
 from models.models import DICT, DT, Emprise
@@ -259,7 +260,7 @@ class DocumentReader:
     def __init__(self, inspector: DocumentInspector):
         self.inspector = inspector
         self.pages: list[XMLPage | PDFPage | ImagePage] = []
-        self._pdf: pdfplumber.PDF | None = None
+        self._pdf: PDF | None = None
 
     def __enter__(self) -> "DocumentReader":
         file_path = self.inspector.file_path
