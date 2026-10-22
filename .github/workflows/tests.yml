@@ -1,4 +1,3 @@
-```yaml
 name: dtdict_parser
 
 on:
@@ -30,4 +29,3 @@ jobs:
         run: |
           poetry install --no-interaction --no-ansi
           poetry run pytest
-```
