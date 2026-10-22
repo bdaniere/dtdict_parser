@@ -99,7 +99,7 @@ def test_image_texts_match_the_acroform_values(image_declarations, acroform_decl
     dt, _ = image_declarations
     expected_dt, _ = acroform_declarations
 
-    assert dt.noConsultationDuTeleservice == "2026100801380T"
+    assert dt.mainNoConsultationDuTeleservice == "2026100801380T"
     assert dt.dateDeLaDeclaration == date(2026, 10, 8)
     assert dt.noAffaireDuResponsableDuProjet == "num_affaore"
     assert dt.representantDuResponsableDeProjet == expected_dt.representantDuResponsableDeProjet

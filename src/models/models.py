@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass, field
 from datetime import date
 from enum import Enum
@@ -170,10 +171,17 @@ class Declaration:
     """
 
     declaration_type: DeclarationType  # hors XML
-    noConsultationDuTeleservice: str | None = None
-    dateDeLaDeclaration: date | None = None
+    dateDeLaDeclaration: date
+    # DT seule : noConsultationDuTeleserviceSeize ; DICT ou DT-DICT conjointe :
+    # noConsultationDuTeleservice
+    mainNoConsultationDuTeleservice: str | None = None
     emprise: Emprise | None = None
     souhaitsPourLeRecepisse: SouhaitsPourLeRecepisse | None = None
+
+    def __post_init__(self) -> None:
+        _validate_no_consultation_number(
+            self.mainNoConsultationDuTeleservice, "mainNoConsultationDuTeleservice"
+        )
 
 
 @dataclass
@@ -193,6 +201,17 @@ class DT(Declaration):
     investigationsComplementaires: InvestigationsComplementaires | None = None
     signatureDuResponsableDuProjetOuDeSonRepresentant: Signature | None = None
 
+    def __post_init__(self) -> None:
+        numero = self.noConsultationDuTeleserviceSeize
+        if numero is not None:
+            _validate_no_consultation_number(numero, "noConsultationDuTeleserviceSeize")
+            if (
+                self.declaration_type == DeclarationType.DT
+                and self.mainNoConsultationDuTeleservice is None
+            ):
+                self.mainNoConsultationDuTeleservice = numero
+        super().__post_init__()
+
 
 @dataclass
 class DICT(Declaration):
@@ -200,9 +219,34 @@ class DICT(Declaration):
     Déclaration d'Intention de Commencement de Travaux.
     """
 
+    noConsultationDuTeleservice: str | None = None
     noAffaireDeLexecutantDesTravaux: str | None = None
     natureDeLaDeclaration: NatureDeclaration | None = None
     executantDesTravaux: Acteur | None = None
     emplacementDesTravaux: Emplacement | None = None
     travauxEtLeurCalendrier: TravauxEtLeurCalendrier | None = None
     signatureDeLExecutantDesTravauxOuDeSonRepresentant: Signature | None = None
+
+    def __post_init__(self) -> None:
+        if self.noConsultationDuTeleservice is not None:
+            _validate_no_consultation_number(
+                self.noConsultationDuTeleservice, "noConsultationDuTeleservice"
+            )
+            if self.mainNoConsultationDuTeleservice is None:
+                self.mainNoConsultationDuTeleservice = self.noConsultationDuTeleservice
+        super().__post_init__()
+
+
+def _validate_no_consultation_number(numero: str, field_name: str) -> None:
+    if not isinstance(numero, str) or not re.fullmatch(
+        r"[0-9]{13}[A-Za-z][A-Za-z0-9]{0,2}", numero
+    ):
+        raise ValueError(
+            f"{field_name} must contain an AAAAMMDD date, five digits, "
+            "one letter, and zero to two optional alphanumeric characters"
+        )
+
+    try:
+        date.fromisoformat(f"{numero[:4]}-{numero[4:6]}-{numero[6:8]}")
+    except ValueError as exc:
+        raise ValueError(f"{field_name} must start with a valid AAAAMMDD date") from exc

@@ -1,7 +1,7 @@
 {
     "template_name": "template_DT_DICT_0.4",
     "fields": {
-        "DT.noConsultationDuTeleservice": {
+        "DT.mainNoConsultationDuTeleservice": {
             "type": "text",
             "section": "DT",
             "bbox": [

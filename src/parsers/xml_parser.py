@@ -48,7 +48,16 @@ class XMLParser(ParserFactory):
             declaration_type = (
                 DeclarationType.CONJOINTE if conjointe else DeclarationType.DT
             )
-            declarations.append(self._build(DT, dt, declaration_type=declaration_type))
+            overrides = {"declaration_type": declaration_type}
+            source = (
+                "noConsultationDuTeleservice"
+                if conjointe
+                else "noConsultationDuTeleserviceSeize"
+            )
+            overrides["mainNoConsultationDuTeleservice"] = (
+                dt.findtext(source) or ""
+            ).strip() or None
+            declarations.append(self._build(DT, dt, **overrides))
 
         dict_part = self.root.find("dtDictConjointes/partieDICT")
         if dict_part is not None:

@@ -33,6 +33,7 @@ class ImageParser(FlattenedPDFParser):
     # separators as punctuation, which is dropped.
     COMB_FIELDS = {
         "noConsultationDuTeleservice",
+        "mainNoConsultationDuTeleservice",
         "noConsultationDuTeleserviceSeize",
         "codePostal",
         "CP",
