@@ -2,10 +2,7 @@ import json
 import re
 import xml.etree.ElementTree as ET
 from datetime import date, datetime
-from pathlib import Path
 from typing import Any
-
-from PyPDF2 import PdfReader
 
 from models.models import (
     DICT,
@@ -13,6 +10,7 @@ from models.models import (
     EmplacementDeLaCommuneConcernee,
     ModeReceptionCourrier,
 )
+from models.pages import PDFPage
 from parsers.base import ParserFactory
 from parsers.flattened_pdf_parser import FlattenedPDFParser
 from parsers.xml_parser import XMLParser
@@ -21,23 +19,22 @@ from parsers.xml_parser import XMLParser
 class AcroformPDFParser(FlattenedPDFParser):
     """Read a DT-DICT PDF whose AcroForm fields are filled."""
 
-    def __init__(self, pdf_path: Path):
-        ParserFactory.__init__(self, pdf_path)
+    def __init__(self, page: PDFPage):
+        ParserFactory.__init__(self, page)
         with open("./models/acroform_template.json", encoding="utf-8") as f:
             self.text_fields = json.load(f)
-        self.reader = PdfReader(pdf_path)
 
     def read_content(self) -> list[DT | DICT]:
         """
         Returns:
-            list[DT | DICT]: the declarations found in the form (both when
-            the form is filled as a joint DT-DICT).
+            list[DT | DICT]: the declarations found in the form fields of the
+            page (both when the form is filled as a joint DT-DICT).
         """
 
         raw = {
-            name: str(field["/V"]).strip()
-            for name, field in (self.reader.get_fields() or {}).items()
-            if field.get("/V") is not None
+            name: value.strip()
+            for name, value in self.page.form_fields.items()
+            if value is not None
         }
 
         results = {

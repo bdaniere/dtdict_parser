@@ -4,7 +4,6 @@ import xml.etree.ElementTree as ET
 from dataclasses import fields, is_dataclass
 from datetime import date, datetime
 from enum import Enum
-from pathlib import Path
 from typing import get_args, get_origin, get_type_hints
 
 from pyproj import Transformer
@@ -16,6 +15,7 @@ from models.models import (
     DT,
     DeclarationType,
 )
+from models.pages import XMLPage
 from parsers.base import ParserFactory
 from parsers.flattened_pdf_parser import FlattenedPDFParser
 
@@ -23,13 +23,9 @@ from parsers.flattened_pdf_parser import FlattenedPDFParser
 class XMLParser(ParserFactory):
     TARGET_EPSG = FlattenedPDFParser.TARGET_EPSG
 
-    def __init__(self, xml_path: Path):
-        super().__init__(xml_path)
-        self.root = ET.parse(xml_path).getroot()
-
-        # Drop namespaces so that tags match the dataclass field names.
-        for element in self.root.iter():
-            element.tag = element.tag.rsplit("}", 1)[-1]
+    def __init__(self, page: XMLPage):
+        super().__init__(page)
+        self.root = page.root
 
     def read_content(self) -> list[DT | DICT]:
         """

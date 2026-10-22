@@ -1,7 +1,6 @@
 import json
 import logging
 import re
-from pathlib import Path
 from typing import Any
 
 import cv2
@@ -9,6 +8,7 @@ import numpy as np
 from paddleocr import PaddleOCR
 
 from models.models import DICT, DT
+from models.pages import ImagePage
 from parsers.base import ParserFactory
 from parsers.flattened_pdf_parser import FlattenedPDFParser
 
@@ -43,8 +43,8 @@ class ImageParser(FlattenedPDFParser):
         "fax",
     }
 
-    def __init__(self, file_path: Path):
-        ParserFactory.__init__(self, file_path)
+    def __init__(self, page: ImagePage):
+        ParserFactory.__init__(self, page)
 
         with open("models/template_14434_03.json", encoding="utf-8") as f:
             self.template_cerfa = json.load(f)
@@ -52,10 +52,7 @@ class ImageParser(FlattenedPDFParser):
         with open("models/template_cerfa_detection.json", encoding="utf-8") as f:
             self.template_cerfa_detection = json.load(f)
 
-        image = cv2.imread(str(file_path))
-        if image is None:
-            raise ValueError(f"Unable to load the image {file_path}")
-        self.image = image
+        self.image = page.image
         self._ocr: PaddleOCR | None = None
 
     @property

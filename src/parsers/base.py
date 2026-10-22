@@ -1,13 +1,13 @@
-from pathlib import Path
+from models.pages import ImagePage, PDFPage, XMLPage
 
 
 class ParserFactory:
-    def __init__(self, file_path: Path):
+    def __init__(self, page: XMLPage | PDFPage | ImagePage):
         """
-        Initialize the ParserFactory with the given file path.
+        Initialize the parser with the page it has to read.
 
         Args:
-            file_path (Path): The path to the file to be parsed.
+            page: a single page, already read from the file by DocumentReader.
         """
 
-        self.file_path = file_path
+        self.page = page
