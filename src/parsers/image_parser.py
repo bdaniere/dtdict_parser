@@ -80,7 +80,7 @@ class ImageParser(FlattenedPDFParser):
 
         self._check_page_ratio()
 
-        if not self._is_cerfa_image():
+        if not self.is_cerfa():
             logger.warning("No Cerfa 14434*03 form was detected in the image")
             return []
 
@@ -92,12 +92,21 @@ class ImageParser(FlattenedPDFParser):
         if abs(width / height - template_width / template_height) > 0.01:
             raise NotImplementedError("Image is not an A4 page / resize needed ?")
 
-    def _is_cerfa_image(self) -> bool:
-        """Check that the cerfa number is found where the template expects it."""
+    def is_cerfa(self) -> bool:
+        """Use OCR at the template locations to check the title and cerfa number."""
 
-        field = self.template_cerfa_detection["fields"]["GLOBAL.cerfa_numero"]
-        text = self._read_texts([field["bbox"]])[0]
-        return "14434" in text
+        fields = self.template_cerfa_detection["fields"]
+        names = ("GLOBAL.titre", "GLOBAL.cerfa_numero")
+        texts = self._read_texts([fields[name]["bbox"] for name in names])
+
+        expected_title = (
+            "Déclaration de projet de Travaux "
+            "Déclaration d’Intention de Commencement de Travaux"
+        )
+        return (
+            " ".join(texts[0].split()) == expected_title
+            and re.fullmatch(r"N°\s*14434\*03", texts[1]) is not None
+        )
 
     def _read_image_fields(self) -> dict[str, dict[str, Any]]:
         """Return the values of every template field, grouped by section."""
