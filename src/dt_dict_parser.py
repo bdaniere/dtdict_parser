@@ -173,8 +173,11 @@ class DocumentInspector:
     @cached_property
     def form_fields(self) -> dict[str, str]:
         """
-        Extract AcroForm fields if present.
+        Extract AcroForm fields if present (none for a file that is not a PDF).
         """
+
+        if not self.is_pdf:
+            return {}
 
         fields = self.pdf_reader.get_form_text_fields()
         return fields or {}
@@ -363,7 +366,7 @@ TODO
 """
 
 if __name__ == "__main__":
-    # input_file_path = Path("/home/bn/Documents/maquette/Travaux-Prevelles-09-2026.pdf")
+    input_file_path = Path("/home/bn/Documents/maquette/Travaux-Prevelles-09-2026.pdf")
     # input_file_path = Path(
     #     "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_1.pdf"
     # )  # acroform_pdf
@@ -375,9 +378,9 @@ if __name__ == "__main__":
     #     "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_7_page-0001.jpg"
     # )  # JPEG image input file
 
-    input_file_path = Path(
-        "/home/bn/Documents/Perso/dtdict_parser/src/dev_tools/2026100800884T_DDC/2026100800884T_DDC_emprise.pdf"
-    )
+    # input_file_path = Path(
+    #     "/home/bn/Documents/Perso/dtdict_parser/src/dev_tools/2026100800884T_DDC/2026100800884T_DDC_emprise.pdf"
+    # )
 
     document_inspector = DocumentInspector(input_file_path)
     print(document_inspector.document_info)
