@@ -28,6 +28,7 @@ class FlattenedPDFParser(ParserFactory):
 
     def __init__(self, page: PDFPage):
         super().__init__(page)
+        self.page: PDFPage = page
 
         with open("models/template_14434_03.json", encoding="utf-8") as f:
             self.template_cerfa = json.load(f)
@@ -119,9 +120,13 @@ class FlattenedPDFParser(ParserFactory):
         for f in fields(model):
             tp = cls._unwrap_optional(hints[f.name])
             key = prefix + f.name
-            if is_dataclass(tp) and isinstance(values.get(key), tp):
+            if (
+                isinstance(tp, type)
+                and is_dataclass(tp)
+                and isinstance(values.get(key), tp)
+            ):
                 kwargs[f.name] = values[key]
-            elif is_dataclass(tp):
+            elif isinstance(tp, type) and is_dataclass(tp):
                 sub_prefix = key + "."
                 has_values = any(
                     k.startswith(sub_prefix) and v not in (None, False)
@@ -274,7 +279,10 @@ class FlattenedPDFParser(ParserFactory):
                 raise ValueError("GML posList has an odd number of values")
             return list(zip(values[::2], values[1::2]))
 
-        exterior = read_ring(root.find("./exterior/LinearRing"))
+        exterior_ring = root.find("./exterior/LinearRing")
+        if exterior_ring is None:
+            return results
+        exterior = read_ring(exterior_ring)
         interiors = [read_ring(r) for r in root.findall("./interior/LinearRing")]
         polygon = Polygon(exterior, interiors)
 
