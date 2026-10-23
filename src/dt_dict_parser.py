@@ -313,12 +313,19 @@ def parse_document(file_path: Path) -> list[DT | DICT]:
             content_type = ContentType(info["content_type"])
 
             if content_type == ContentType.XML:
+                if not isinstance(page, XMLPage):
+                    raise TypeError(f"Expected XMLPage, got {type(page).__name__}")
                 declarations += XMLParser(page).read_content()
             elif content_type == ContentType.IMAGE:
+                if not isinstance(page, ImagePage):
+                    raise TypeError(f"Expected ImagePage, got {type(page).__name__}")
                 declarations += ImageParser(page).read_content()
             elif content_type == ContentType.ACROFORM_PDF:
+                if not isinstance(page, PDFPage):
+                    raise TypeError(f"Expected PDFPage, got {type(page).__name__}")
                 declarations += AcroformPDFParser(page).read_content()
             elif content_type == ContentType.FLATTENED_PDF:
+                assert isinstance(page, PDFPage)
                 parser = FlattenedPDFParser(page)
                 page_declarations = parser.read_content()
                 if page_declarations:
