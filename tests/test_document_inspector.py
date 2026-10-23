@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+from pypdf.generic import IndirectObject
 
 from dt_dict_parser import (
     IMAGE_SIGNATURES,
@@ -8,6 +9,8 @@ from dt_dict_parser import (
     DocumentInspector,
     DocumentReader,
     FileType,
+    _page_annotations,
+    _page_form_fields,
     parse_document,
 )
 
@@ -122,3 +125,42 @@ def test_acroform_page_is_detected_as_cerfa(conjointe_pdf, first_page):
 
     with first_page(conjointe_pdf) as page:
         assert AcroformPDFParser(page).is_cerfa()
+
+
+@pytest.fixture
+def indirect_annots_page(tmp_path):
+    """First page of a PDF whose /Annots is an indirect reference to the array."""
+    from pypdf import PdfReader, PdfWriter
+    from pypdf.generic import ArrayObject, DictionaryObject, NameObject, TextStringObject
+
+    writer = PdfWriter()
+    page = writer.add_blank_page(595, 842)
+    widget = DictionaryObject(
+        {
+            NameObject("/Subtype"): NameObject("/Widget"),
+            NameObject("/T"): TextStringObject("champ"),
+            NameObject("/V"): TextStringObject("valeur"),
+        }
+    )
+    annots = writer._add_object(ArrayObject([writer._add_object(widget)]))
+    page[NameObject("/Annots")] = annots
+
+    path = tmp_path / "indirect_annots.pdf"
+    with open(path, "wb") as f:
+        writer.write(f)
+    return PdfReader(path).pages[0]
+
+
+def test_page_annotations_resolves_indirect_array(indirect_annots_page):
+    from pypdf.generic import ArrayObject
+
+    assert isinstance(indirect_annots_page.get("/Annots"), IndirectObject)
+    assert isinstance(_page_annotations(indirect_annots_page), ArrayObject)
+
+
+def test_form_fields_with_indirect_annots(indirect_annots_page):
+    assert _page_form_fields(indirect_annots_page) == {"champ": "valeur"}
+
+    inspector = DocumentInspector(Path("unused.pdf"))
+    inspector.__dict__["form_fields"] = {"champ": "valeur"}
+    assert inspector._page_has_form_fields(indirect_annots_page)

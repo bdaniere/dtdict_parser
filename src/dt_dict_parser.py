@@ -2,6 +2,7 @@ import logging
 from enum import Enum
 from functools import cached_property
 from pathlib import Path
+from typing import cast
 from xml.etree import ElementTree as ET
 
 import cv2
@@ -27,11 +28,18 @@ from parsers.xml_parser import XMLParser
 logger = logging.getLogger(__name__)
 
 
+def _page_annotations(page: PageObject) -> list:
+    """Annotations of a page; /Annots may be an indirect reference to the array."""
+
+    # page[...] resolves an indirect reference, whereas page.get(...) does not.
+    return cast(list, page["/Annots"]) if "/Annots" in page else []
+
+
 def _page_form_fields(page: PageObject) -> dict[str, str]:
     """Values of the AcroForm widgets of a page, keyed by qualified field name."""
 
     fields: dict[str, str] = {}
-    for annot in page.get("/Annots") or []:
+    for annot in _page_annotations(page):
         widget = annot.get_object()
         if widget.get("/Subtype") != "/Widget":
             continue
@@ -239,7 +247,7 @@ class DocumentInspector:
 
     def _page_has_form_fields(self, page) -> bool:
         """True if the page holds at least one text widget of the AcroForm."""
-        for annot in page.get("/Annots") or []:
+        for annot in _page_annotations(page):
             widget = annot.get_object()
             if widget.get("/Subtype") != "/Widget":
                 continue
@@ -366,10 +374,10 @@ TODO
 """
 
 if __name__ == "__main__":
-    input_file_path = Path("/home/bn/Documents/maquette/Travaux-Prevelles-09-2026.pdf")
-    # input_file_path = Path(
-    #     "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_1.pdf"
-    # )  # acroform_pdf
+    # input_file_path = Path("/home/bn/Documents/maquette/Travaux-Prevelles-09-2026.pdf")
+    input_file_path = Path(
+        "/home/bn/Documents/maquette/2026100801380T_DICT-DT Conjointe_1.pdf"
+    )  # acroform_pdf
     # input_file_path = Path(
     #     "dev_tools/2026100801380T_DDC/2026100801380T_DDC_description/2026100801380T_DDC_description.xml"
     # )  # XML input file
@@ -387,5 +395,3 @@ if __name__ == "__main__":
 
     content = parse_document(input_file_path)
     print(content)
-
-    breakpoint()
