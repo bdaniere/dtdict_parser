@@ -20,8 +20,9 @@ def test_xml_geometry_is_reprojected_to_wkt(xml_declarations):
     assert xml_declarations[0].emprise.geometrie.startswith("POLYGON ((")
 
 
-def test_xml_dt_only_declaration(dt_xml):
-    declarations = XMLParser(dt_xml).read_content()
+def test_xml_dt_only_declaration(dt_xml, first_page):
+    with first_page(dt_xml) as page:
+        declarations = XMLParser(page).read_content()
 
     assert len(declarations) == 1
     assert declarations[0].declaration_type == DeclarationType.DT
@@ -64,8 +65,9 @@ def test_pdf_and_xml_agree_on_the_same_declaration(xml_declarations, acroform_de
     )
 
 
-def test_acroform_dt_only_declaration(dt_pdf):
-    dt = AcroformPDFParser(dt_pdf).read_content()[0]
+def test_acroform_dt_only_declaration(dt_pdf, first_page):
+    with first_page(dt_pdf) as page:
+        dt = AcroformPDFParser(page).read_content()[0]
 
     assert dt.declaration_type == DeclarationType.DT
     assert dt.mainNoConsultationDuTeleservice == "2026100801140TJG"

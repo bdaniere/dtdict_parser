@@ -2,6 +2,7 @@ from datetime import date
 
 import pytest
 
+from models.pages import ImagePage
 from parsers.flattened_pdf_parser import FlattenedPDFParser
 
 CHECKED_BOXES = [
@@ -20,8 +21,9 @@ UNCHECKED_BOXES = [
 
 
 @pytest.fixture
-def flattened_parser(conjointe_pdf):
-    parser = FlattenedPDFParser(conjointe_pdf)
+def flattened_parser(conjointe_pdf, first_page):
+    with first_page(conjointe_pdf) as page:
+        parser = FlattenedPDFParser(page)
     parser.template_cerfa = {
         "fields": {
             "DT.texte": {"type": "text"},
@@ -88,6 +90,43 @@ def test_pixel_conversion_scales_with_image_size(image_parser):
     assert image_parser._to_pixels([0, 0, 595, 842]) == (0, 0, width, height)
 
 
+@pytest.mark.parametrize(
+    ("texts", "expected"),
+    [
+        (
+            [
+                "Déclaration de projet de Travaux "
+                "Déclaration d’Intention de Commencement de Travaux",
+                "N°14434*03",
+            ],
+            True,
+        ),
+        (["An unrelated document", "N°14434*03"], False),
+        (
+            [
+                "Déclaration de projet de Travaux "
+                "Déclaration d’Intention de Commencement de Travaux",
+                "N°14435*03",
+            ],
+            False,
+        ),
+    ],
+)
+def test_is_cerfa_uses_both_template_fields(image_parser, monkeypatch, texts, expected):
+    fields = image_parser.template_cerfa_detection["fields"]
+    bboxes = [fields[name]["bbox"] for name in ("GLOBAL.titre", "GLOBAL.cerfa_numero")]
+    read_texts_calls = []
+
+    def read_texts(requested_bboxes):
+        read_texts_calls.append(requested_bboxes)
+        return texts
+
+    monkeypatch.setattr(image_parser, "_read_texts", read_texts)
+
+    assert image_parser.is_cerfa() is expected
+    assert read_texts_calls == [bboxes]
+
+
 def test_image_gives_a_dt_and_a_dict(image_declarations):
     dt, dict_ = image_declarations
 
@@ -139,24 +178,22 @@ def test_image_empty_fields_are_none(image_declarations):
 
 
 @pytest.fixture
-def blank_image(tmp_path):
-    cv2 = pytest.importorskip("cv2")
+def blank_image():
     np = pytest.importorskip("numpy")
 
     def write(width, height):
-        path = tmp_path / "blank.png"
-        cv2.imwrite(str(path), np.full((height, width, 3), 255, dtype=np.uint8))
-        return path
+        return ImagePage(np.full((height, width, 3), 255, dtype=np.uint8))
 
     return write
 
 
-def test_unreadable_image_raises(image_parser, tmp_path):
+def test_unreadable_image_raises(first_page, tmp_path):
     path = tmp_path / "broken.png"
-    path.write_bytes(b"not an image")
+    path.write_bytes(b"\x89PNG\r\n\x1a\n truncated")
 
     with pytest.raises(ValueError):
-        type(image_parser)(path)
+        with first_page(path):
+            pass
 
 
 def test_non_a4_image_is_rejected(image_parser, blank_image):

@@ -1,6 +1,7 @@
 """Shared fixtures: sample documents and parsed results (OCR is run once per session)."""
 
 import os
+from contextlib import contextmanager
 from pathlib import Path
 
 import pytest
@@ -16,6 +17,19 @@ def _run_from_src():
     os.chdir(SRC)
     yield
     os.chdir(previous)
+
+
+@pytest.fixture(scope="session")
+def first_page():
+    """Context manager giving the first page of a file, as read by DocumentReader."""
+    from dt_dict_parser import DocumentInspector, DocumentReader
+
+    @contextmanager
+    def _first_page(path: Path):
+        with DocumentReader(DocumentInspector(path)) as reader:
+            yield reader.pages[0]
+
+    return _first_page
 
 
 @pytest.fixture(scope="session")
@@ -44,26 +58,29 @@ def dt_pdf() -> Path:
 
 
 @pytest.fixture(scope="session")
-def xml_declarations(conjointe_xml):
+def xml_declarations(conjointe_xml, first_page):
     from parsers.xml_parser import XMLParser
 
-    return XMLParser(conjointe_xml).read_content()
+    with first_page(conjointe_xml) as page:
+        return XMLParser(page).read_content()
 
 
 @pytest.fixture(scope="session")
-def acroform_declarations(conjointe_pdf):
+def acroform_declarations(conjointe_pdf, first_page):
     from parsers.acroform_pdf_parser import AcroformPDFParser
 
-    return AcroformPDFParser(conjointe_pdf).read_content()
+    with first_page(conjointe_pdf) as page:
+        return AcroformPDFParser(page).read_content()
 
 
 @pytest.fixture(scope="session")
-def image_parser(conjointe_jpg):
+def image_parser(conjointe_jpg, first_page):
     pytest.importorskip("paddleocr")
     pytest.importorskip("cv2")
     from parsers.image_parser import ImageParser
 
-    return ImageParser(conjointe_jpg)
+    with first_page(conjointe_jpg) as page:
+        return ImageParser(page)
 
 
 @pytest.fixture(scope="session")

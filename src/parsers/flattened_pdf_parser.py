@@ -6,13 +6,10 @@ import xml.etree.ElementTree as ET
 from dataclasses import fields, is_dataclass
 from datetime import date, datetime
 from enum import Enum
-from pathlib import Path
 from types import UnionType
 from typing import Any, Union, get_args, get_origin, get_type_hints
 
-import pdfplumber
 from pdfplumber.page import Page as pdfplumber_page
-from PyPDF2 import PdfReader
 from pyproj import Transformer
 from shapely.geometry import Polygon
 from shapely.ops import transform as shapely_transform
@@ -22,15 +19,16 @@ from models.models import (
     DT,
     DeclarationType,
 )
+from models.pages import PDFPage
 from parsers.base import ParserFactory
 
 
 class FlattenedPDFParser(ParserFactory):
     TARGET_EPSG = "EPSG:2154"
 
-    def __init__(self, file_path: Path):
-        super().__init__(file_path)
-        self.reader = PdfReader(file_path)
+    def __init__(self, page: PDFPage):
+        super().__init__(page)
+        self.page: PDFPage = page
 
         with open("models/template_14434_03.json", encoding="utf-8") as f:
             self.template_cerfa = json.load(f)
@@ -38,34 +36,36 @@ class FlattenedPDFParser(ParserFactory):
         with open("models/template_cerfa_detection.json", encoding="utf-8") as f:
             self.template_cerfa_detection = json.load(f)
 
-    def read_content(self):
+    def read_content(self) -> list[DT | DICT]:
         """
-        Read the content of the first page of the PDF.
-
-        TODO :
-         - présence de plusieurs cerfa dans un document en entré
-         - Aucun cerfa détecté
+        Read the page as a DT-DICT cerfa.
 
         Returns:
             list[DT | DICT]: the declarations found in the cerfa (both when
-            the cerfa is filled as a joint DT-DICT).
+            the cerfa is filled as a joint DT-DICT); empty if the page is not
+            the cerfa. The geometry lives on another page, see read_geometry.
         """
 
-        results = {"DT": {}, "DICT": {}, "global": {}}
+        page = self.page.content
+        if not (abs(page.width - 595) < 2 and abs(page.height - 842) < 2):
+            return []
 
-        with pdfplumber.open(self.file_path) as pdf_file:
-            for page in pdf_file.pages:
-                if not (abs(page.width - 595) < 2 and abs(page.height - 842) < 2):
-                    raise NotImplementedError(
-                        "Page dimensions are not A4 / rezise need ?"
-                    )
+        if not self.is_cerfa():
+            return []
 
-                if self._is_dt_dict_cerfa(page):
-                    results = self.extract_cerfa_data(page, results)
-                elif self._is_page_contain_geometry(page):
-                    results = self.extract_geometry(page, results)
-
+        results = self.extract_cerfa_data(page, {"DT": {}, "DICT": {}, "global": {}})
         return self._build_declarations(results)
+
+    def read_geometry(self) -> str | None:
+        """WKT (TARGET_EPSG) of the GML polygon of the page, if it holds one."""
+
+        if not self._is_page_contain_geometry(self.page.content):
+            return None
+
+        results = self.extract_geometry(
+            self.page.content, {"DT": {}, "DICT": {}, "global": {}}
+        )
+        return results["global"].get("geom")
 
     def _build_declarations(self, results: dict) -> list[DT | DICT]:
         """
@@ -84,9 +84,7 @@ class FlattenedPDFParser(ParserFactory):
             has_section_content = any(
                 value not in (None, False, "", [])
                 and not key.startswith("souhaitsPourLeRecepisse.")
-                and not key.endswith(
-                    ".listeDesEmplacementsDesCommunesConcernees"
-                )
+                and not key.endswith(".listeDesEmplacementsDesCommunesConcernees")
                 for key, value in values.items()
             )
             has_any_content = any(
@@ -122,9 +120,13 @@ class FlattenedPDFParser(ParserFactory):
         for f in fields(model):
             tp = cls._unwrap_optional(hints[f.name])
             key = prefix + f.name
-            if is_dataclass(tp) and isinstance(values.get(key), tp):
+            if (
+                isinstance(tp, type)
+                and is_dataclass(tp)
+                and isinstance(values.get(key), tp)
+            ):
                 kwargs[f.name] = values[key]
-            elif is_dataclass(tp):
+            elif isinstance(tp, type) and is_dataclass(tp):
                 sub_prefix = key + "."
                 has_values = any(
                     k.startswith(sub_prefix) and v not in (None, False)
@@ -173,6 +175,10 @@ class FlattenedPDFParser(ParserFactory):
             return None
         return value
 
+    def is_cerfa(self) -> bool:
+        """Check that the page is the DT-DICT cerfa (title and number at their place)."""
+        return self._is_dt_dict_cerfa(self.page.content)
+
     def _is_dt_dict_cerfa(self, page: pdfplumber_page) -> bool:
         """
         Check if the page matches the DT_DICT cerfa template.
@@ -192,7 +198,7 @@ class FlattenedPDFParser(ParserFactory):
         }
 
     def _is_page_contain_geometry(self, page: pdfplumber_page) -> bool:
-        text = page.extract_text()
+        text = page.extract_text() or ""
         return bool(
             re.search(r"<gml:Polygon\b[^>]*>.*?</gml:Polygon>", text, flags=re.DOTALL)
         )
@@ -273,7 +279,10 @@ class FlattenedPDFParser(ParserFactory):
                 raise ValueError("GML posList has an odd number of values")
             return list(zip(values[::2], values[1::2]))
 
-        exterior = read_ring(root.find("./exterior/LinearRing"))
+        exterior_ring = root.find("./exterior/LinearRing")
+        if exterior_ring is None:
+            return results
+        exterior = read_ring(exterior_ring)
         interiors = [read_ring(r) for r in root.findall("./interior/LinearRing")]
         polygon = Polygon(exterior, interiors)
 
