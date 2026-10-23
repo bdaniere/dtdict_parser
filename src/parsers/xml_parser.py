@@ -44,7 +44,7 @@ class XMLParser(ParserFactory):
             declaration_type = (
                 DeclarationType.CONJOINTE if conjointe else DeclarationType.DT
             )
-            overrides = {"declaration_type": declaration_type}
+            overrides: dict[str, object] = {"declaration_type": declaration_type}
             source = (
                 "noConsultationDuTeleservice"
                 if conjointe
@@ -77,7 +77,7 @@ class XMLParser(ParserFactory):
 
             if get_origin(tp) is list:
                 (item_tp,) = get_args(tp)
-                if is_dataclass(item_tp):
+                if isinstance(item_tp, type) and is_dataclass(item_tp):
                     items = (
                         [self._build(item_tp, c) for c in child]
                         if child is not None
@@ -92,7 +92,7 @@ class XMLParser(ParserFactory):
                 kwargs[f.name] = None
             elif f.name == "geometrie":
                 kwargs[f.name] = self._read_geometry(child)
-            elif is_dataclass(tp):
+            elif isinstance(tp, type) and is_dataclass(tp):
                 kwargs[f.name] = self._build(tp, child)
             else:
                 kwargs[f.name] = self._convert(child.text, tp)
@@ -131,14 +131,20 @@ class XMLParser(ParserFactory):
         def read_ring(ring: ET.Element) -> list[tuple[float, float]]:
             coordinates = ring.findtext("coordinates")
             if coordinates:
-                return [
-                    tuple(float(v) for v in pair.split(",")[:2])
-                    for pair in coordinates.split()
-                ]
+                points = []
+                for pair in coordinates.split():
+                    values = pair.split(",")
+                    if len(values) < 2:
+                        raise ValueError(f"Invalid coordinate pair: {pair}")
+                    points.append((float(values[0]), float(values[1])))
+                return points
             values = [float(v) for v in ring.findtext(".//posList", "").split()]
             return list(zip(values[::2], values[1::2]))
 
-        exterior = read_ring(polygon_el.find("exterior/LinearRing"))
+        exterior_ring = polygon_el.find("exterior/LinearRing")
+        if exterior_ring is None:
+            return None
+        exterior = read_ring(exterior_ring)
         interiors = [read_ring(r) for r in polygon_el.findall("interior/LinearRing")]
         polygon = Polygon(exterior, interiors)
 
