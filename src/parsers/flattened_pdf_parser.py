@@ -48,7 +48,7 @@ class FlattenedPDFParser(ParserFactory):
 
         page = self.page.content
         if not (abs(page.width - 595) < 2 and abs(page.height - 842) < 2):
-            raise NotImplementedError("Page dimensions are not A4 / rezise need ?")
+            return []
 
         if not self.is_cerfa():
             return []
