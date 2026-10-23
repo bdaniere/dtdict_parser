@@ -51,6 +51,55 @@ def _page_form_fields(page: PageObject) -> dict[str, str]:
     return fields
 
 
+def parse_document(file_path: Path) -> list[DT | DICT]:
+    """Read every page of the file and give each one to the matching parser."""
+
+    inspector = DocumentInspector(file_path)
+    declarations: list[DT | DICT] = []
+    flattened_declarations: list[DT | DICT] = []
+    geometry: str | None = None
+
+    with DocumentReader(inspector) as reader:
+        for info, page in zip(inspector.document_info, reader.pages):
+            content_type = ContentType(info["content_type"])
+
+            if content_type == ContentType.XML:
+                if not isinstance(page, XMLPage):
+                    raise TypeError(f"Expected XMLPage, got {type(page).__name__}")
+                declarations += XMLParser(page).read_content()
+            elif content_type == ContentType.IMAGE:
+                if not isinstance(page, ImagePage):
+                    raise TypeError(f"Expected ImagePage, got {type(page).__name__}")
+                declarations += ImageParser(page).read_content()
+            elif content_type == ContentType.ACROFORM_PDF:
+                if not isinstance(page, PDFPage):
+                    raise TypeError(f"Expected PDFPage, got {type(page).__name__}")
+                declarations += AcroformPDFParser(page).read_content()
+            elif content_type == ContentType.FLATTENED_PDF:
+                assert isinstance(page, PDFPage)
+                parser = FlattenedPDFParser(page)
+                page_declarations = parser.read_content()
+                if page_declarations:
+                    flattened_declarations += page_declarations
+                else:
+                    geometry = parser.read_geometry() or geometry
+            else:
+                logger.warning(
+                    "Page %s (%s) is not supported yet",
+                    info["page_number"],
+                    content_type.value,
+                )
+
+    # The GML polygon is on its own page, apart from the cerfa.
+    for declaration in flattened_declarations:
+        if geometry:
+            if declaration.emprise is None:
+                declaration.emprise = Emprise()
+            declaration.emprise.geometrie = geometry
+
+    return declarations + flattened_declarations
+
+
 # ██████╗  ██████╗  ██████╗██╗   ██╗███╗   ███╗███████╗███╗   ██╗████████╗    ██╗███╗   ██╗███████╗ ██████╗██████╗ ███████╗ ██████╗████████╗ ██████╗ ██████╗
 # ██╔══██╗██╔═══██╗██╔════╝██║   ██║████╗ ████║██╔════╝████╗  ██║╚══██╔══╝    ██║████╗  ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗
 # ██║  ██║██║   ██║██║     ██║   ██║██╔████╔██║█████╗  ██╔██╗ ██║   ██║       ██║██╔██╗ ██║███████╗██║     ██████╔╝█████╗  ██║        ██║   ██║   ██║██████╔╝
@@ -298,55 +347,6 @@ class DocumentReader:
             self._pdf.close()
             self._pdf = None
         self.pages = []
-
-
-def parse_document(file_path: Path) -> list[DT | DICT]:
-    """Read every page of the file and give each one to the matching parser."""
-
-    inspector = DocumentInspector(file_path)
-    declarations: list[DT | DICT] = []
-    flattened_declarations: list[DT | DICT] = []
-    geometry: str | None = None
-
-    with DocumentReader(inspector) as reader:
-        for info, page in zip(inspector.document_info, reader.pages):
-            content_type = ContentType(info["content_type"])
-
-            if content_type == ContentType.XML:
-                if not isinstance(page, XMLPage):
-                    raise TypeError(f"Expected XMLPage, got {type(page).__name__}")
-                declarations += XMLParser(page).read_content()
-            elif content_type == ContentType.IMAGE:
-                if not isinstance(page, ImagePage):
-                    raise TypeError(f"Expected ImagePage, got {type(page).__name__}")
-                declarations += ImageParser(page).read_content()
-            elif content_type == ContentType.ACROFORM_PDF:
-                if not isinstance(page, PDFPage):
-                    raise TypeError(f"Expected PDFPage, got {type(page).__name__}")
-                declarations += AcroformPDFParser(page).read_content()
-            elif content_type == ContentType.FLATTENED_PDF:
-                assert isinstance(page, PDFPage)
-                parser = FlattenedPDFParser(page)
-                page_declarations = parser.read_content()
-                if page_declarations:
-                    flattened_declarations += page_declarations
-                else:
-                    geometry = parser.read_geometry() or geometry
-            else:
-                logger.warning(
-                    "Page %s (%s) is not supported yet",
-                    info["page_number"],
-                    content_type.value,
-                )
-
-    # The GML polygon is on its own page, apart from the cerfa.
-    for declaration in flattened_declarations:
-        if geometry:
-            if declaration.emprise is None:
-                declaration.emprise = Emprise()
-            declaration.emprise.geometrie = geometry
-
-    return declarations + flattened_declarations
 
 
 # ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗
